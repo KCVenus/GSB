@@ -83,25 +83,61 @@ class PdoGsb
     }
 
     /**
-     * Retourne les informations d'un visiteur
+     * Retourne les informations d'un employe (visiteur ou comptable)
      *
      * @param String $login Login du visiteur
      * @param String $mdp   Mot de passe du visiteur
-     *
+     * @param String $table Table correspondant au statut de l'employé qui se connecte ('visiteur' ou 'comptable')
      * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
      */
-    public function getInfosVisiteur($login, $mdp): array
+    public function getInfos($login, $mdp, $table): array
     {
-        $requetePrepare = $this->connexion->prepare(
-            'SELECT visiteur.id AS id, visiteur.nom AS nom, '
-            . 'visiteur.prenom AS prenom '
-            . 'FROM visiteur '
-            . 'WHERE visiteur.login = :unLogin AND visiteur.mdp = :unMdp'
+        $req= 'SELECT id AS id, nom AS nom, prenom AS prenom FROM ' 
+                . $table
+                . ' WHERE login = :unLogin AND mdp = :unMdp ';
+        
+        $requetePrepare = $this->connexion->prepare($req);
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
+
+        $requetePrepare->execute();
+        return $requetePrepare->fetch(PDO::FETCH_ASSOC);
+    }
+    /**
+     * Retourne true si le couple login,mdp correspond à un comptable, false sinon.
+     * @param type $login
+     * @param type $mdp
+     * @return type
+     */
+    public function verifierSiComptable($login, $mdp){
+         $requetePrepare = $this->connexion->prepare(
+            'SELECT c.login '
+            . 'FROM comptable c '
+            . 'WHERE c.login = :unLogin AND c.mdp = :unMdp'
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
         $requetePrepare->execute();
-        return $requetePrepare->fetch();
+
+        return $requetePrepare->fetch() ? true : false ;
+    
+    }
+    /**
+     * Retourne true si le couple login,mdp correspond à un visiteur, false sinon.
+     * @param type $login
+     * @param type $mdp
+     * @return type
+     */
+      public function verifierSiVisiteur($login, $mdp){
+         $requetePrepare = $this->connexion->prepare(
+                 'SELECT v.login FROM visiteur v WHERE v.login = :unLogin AND v.mdp = :unMdp '
+        );
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
+        $requetePrepare->execute();
+
+        return $requetePrepare->fetch() ? true : false ;
+    
     }
 
     /**

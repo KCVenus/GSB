@@ -29,16 +29,27 @@ switch ($action) {
     case 'valideConnexion':
         $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $visiteur = $pdo->getInfosVisiteur($login, $mdp);
-        if (!is_array($visiteur)) {
+        /**
+        * si statut=1 l'employe est un visiteur, si statut =2 l'employe est un comptable
+        */
+        if($pdo->verifierSiVisiteur($login, $mdp)){
+            $statut = 1;
+            $table="visiteur";
+        }
+        else if($pdo->verifierSiComptable($login,$mdp)){
+            $statut=2;
+            $table="comptable";
+        }
+        $employe = $pdo->getInfos($login, $mdp, $table);
+        if (!is_array($employe)) {
             Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
             include PATH_VIEWS . 'v_erreurs.php';
             include PATH_VIEWS . 'v_connexion.php';
         } else {
-            $id = $visiteur['id'];
-            $nom = $visiteur['nom'];
-            $prenom = $visiteur['prenom'];
-            Utilitaires::connecter($id, $nom, $prenom);
+            $id = $employe['id'];
+            $nom = $employe['nom'];
+            $prenom = $employe['prenom'];
+            Utilitaires::connecter($id, $nom, $prenom, $statut);
             header('Location: index.php');
         }
         break;

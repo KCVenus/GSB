@@ -1,7 +1,7 @@
 -- Script de restauration de l'application "GSB Frais"
 
 -- Administration de la base de données
-CREATE DATABASE IF NOT EXISTS gsb_frais_B3
+CREATE DATABASE IF NOT EXISTS gsb_frais
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 CREATE USER IF NOT EXISTS 'userGsb'@'localhost' IDENTIFIED BY 'secret';
@@ -37,6 +37,22 @@ CREATE TABLE IF NOT EXISTS visiteur (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS comptable (
+  id char(5) NOT NULL,
+  nom char(30) DEFAULT NULL,
+  prenom char(30)  DEFAULT NULL, 
+  login char(20) DEFAULT NULL,
+  mdp char(20) DEFAULT NULL,
+  adresse char(30) DEFAULT NULL,
+  cp char(5) DEFAULT NULL,
+  ville char(30) DEFAULT NULL,
+  dateembauche date DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+insert into comptable(id,nom, prenom, login, mdp, adresse,cp, ville, dateembauche)
+values('666666','Dupont','Martin','m.dupont','1','52 rue de Penthièvre','95000','PONTOISE','1987-06-14');
+
 CREATE TABLE IF NOT EXISTS fichefrais (
   idvisiteur char(5) NOT NULL,
   mois char(6) NOT NULL,
@@ -48,6 +64,7 @@ CREATE TABLE IF NOT EXISTS fichefrais (
   FOREIGN KEY (idetat) REFERENCES etat(id),
   FOREIGN KEY (idvisiteur) REFERENCES visiteur(id)
 ) ENGINE=InnoDB;
+
 
 CREATE TABLE IF NOT EXISTS lignefraisforfait (
   idvisiteur char(5) NOT NULL,
@@ -155,7 +172,7 @@ INSERT INTO `visiteur` VALUES
 ('b542e','Baril','Melville','m.baril','ool2mae7A','39 rue des Dunes','94100','SAINT-MAUR-DES-FOSSÈS','2010-06-17'),
 ('b556d','Brault','Armand','a.brault','va3Ohshaing','95 rue des Soeurs','83130','LA GARDE','1981-11-18'),
 ('b572d','Bellefeuille','Evrard','e.bellefeuille','xoo6AphuThei','23 Rue du Palais','95120','ERMONT','2000-03-24'),
-('b579n','Bellemare','Tristan','t.bellemare','AeD6eid2quee','63 rue des lieutemants Thomazo','83300','DRAGUIGNAN','2002-04-29'),
+('b579n','Bellemare','visiteurTristan','t.bellemare','AeD6eid2quee','63 rue des lieutemants Thomazo','83300','DRAGUIGNAN','2002-04-29'),
 ('b599n','Brochu','Benjamin','b.brochu','shei1uo0Ei','53 avenue de l\'Amandier','33000','BORDEAUX','2010-06-22'),
 ('b628e','Bois','Bruce','b.bois','WeiHii5o','47 rue du Faubourg National','33400','TALENCE','1995-01-22'),
 ('b631e','Bilodeau','Dominique','d.bilodeau','tae1oopahGh','31 rue de la Hulotais','59430','SAINT-POL-SUR-MER','1989-04-19'),
