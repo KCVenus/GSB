@@ -73,8 +73,19 @@ alter table utilisateur add column statut int default 1;
 -- ) ENGINE=InnoDB;
 
 
-insert into comptable(id, nom, prenom, login, mdp, adresse,cp, ville, dateembauche)
-values('666666','Dupont','Martin','m.dupont','1','52 rue de Penthièvre','95000','PONTOISE','1987-06-14');
+--  alter table visiteur
+-- modify mdp char(100);
+-- update visiteur set mdp=md5(mdp);
+-- set sql_safe_updates=0;
+-- drop database gsb_frais_b3;
+
+-- ALTER TABLE visiteur ADD email TEXT NULL;
+-- UPDATE visiteur SET email = CONCAT(login,"@swiss-galaxy.com");
+-- ALTER TABLE visiteur ADD codea2f CHAR(4);
+
+insert into utilisateur(id, nom, prenom, login, mdp, adresse,cp, ville, dateembauche, statut)
+values('666','Dupont','Martin','m.dupont','1','52 rue de Penthièvre','95000','PONTOISE','1987-06-14', 2);
+
 
 CREATE TABLE IF NOT EXISTS fichefrais (
   idvisiteur char(5) NOT NULL,
