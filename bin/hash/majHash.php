@@ -1,21 +1,21 @@
 <?php
 
-$pdo = new PDO('mysql:host=localhost;dbname=gsb_frais_b3', 'userGsbB3', 'gsbb3');
+$pdo = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
 $pdo->query('SET CHARACTER SET utf8');
 
 $requetePrepare = $pdo->prepare(
-       'SELECT visiteur.id AS id, visiteur.mdp as mdp '
-       . 'FROM visiteur '
+       'SELECT utilisateur.id AS id, utilisateur.mdp as mdp '
+       . 'FROM utilisateur '
    );
 $requetePrepare->execute();
-$visiteurs = $requetePrepare->fetchAll(PDO::FETCH_ASSOC);
+$utilisateurs = $requetePrepare->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($visiteurs as $visiteur) {
-    $mdp = $visiteur['mdp'];
-    $login = $visiteur['id'];
+foreach ($utilisateurs as $utilisateur) {
+    $mdp = $utilisateur['mdp'];
+    $login = $utilisateur['id'];
     
     $hashMdp = password_hash($mdp, PASSWORD_DEFAULT);
-    $req = $pdo->prepare('UPDATE visiteur SET mdp= :hashMdp  WHERE id= :unId ');
+    $req = $pdo->prepare('UPDATE utilisateur SET mdp= :hashMdp  WHERE id= :unId ');
     $req->bindParam(':unId',$login, PDO::PARAM_STR);
     $req->bindParam(':hashMdp',$hashMdp, PDO::PARAM_STR);
     $req->execute();

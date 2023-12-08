@@ -104,14 +104,14 @@ class PdoGsb
         return $requetePrepare->fetch(PDO::FETCH_ASSOC);
     }
     
-     public function getInfosUtilisateur($login, $mdp, $statut): array
+     public function getInfosUtilisateur($login, $statut): array
     {
-        $req= 'SELECT id AS id, nom AS nom, prenom AS prenom FROM utilisateur' 
-                . ' WHERE login = :unLogin AND mdp = :unMdp AND statut = :statut ';
+        $req= 'SELECT id AS id, nom AS nom, prenom AS prenom, email AS email '
+                . ' FROM utilisateur' 
+                . ' WHERE login = :unLogin AND statut = :statut ';
         
         $requetePrepare = $this->connexion->prepare($req);
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
         $requetePrepare->bindParam(':statut', $statut, PDO::PARAM_INT);
 
         $requetePrepare->execute();
@@ -143,20 +143,28 @@ class PdoGsb
      * @param type $mdp
      * @return type
      */
-     public function getStatutUtilisateur($login, $mdp){
+     public function getStatutUtilisateur($login){
          $requetePrepare = $this->connexion->prepare(
             'SELECT u.statut '
             . 'FROM utilisateur u '
-            . 'WHERE u.login = :unLogin AND u.mdp = :unMdp'
+            . 'WHERE u.login = :unLogin '
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
         $requetePrepare->execute();
-
         return $requetePrepare->fetch(PDO::FETCH_COLUMN) ;
     
     }
     
+     public function getMdpUtilisateur($login) {
+    $requetePrepare = $this->connexion->prepare(
+        'SELECT mdp '
+        . 'FROM utilisateur '
+        . 'WHERE utilisateur.login = :unLogin'
+    );
+    $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+    $requetePrepare->execute();
+    return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
+}
     
     /**
      * Retourne true si le couple login,mdp correspond à un visiteur, false sinon.
@@ -180,20 +188,20 @@ class PdoGsb
     
     public function setCodeA2f($id, $code) {
     $requetePrepare = $this->connexion->prepare(
-        'UPDATE visiteur '
+        'UPDATE utilisateur '
       . 'SET codea2f = :unCode '
-      . 'WHERE visiteur.id = :unIdVisiteur '
+      . 'WHERE utilisateur.id = :unId '
     );
     $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
-    $requetePrepare->bindParam(':unIdVisiteur', $id, PDO::PARAM_STR);
+    $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
     $requetePrepare->execute();
     }
 
-    public function getCodeVisiteur($id) {
+    public function getCodeUtilisateur($id) {
         $requetePrepare = $this->connexion->prepare(
-            'SELECT visiteur.codea2f AS codea2f '
-          . 'FROM visiteur '
-          . 'WHERE visiteur.id = :unId'
+            'SELECT utilisateur.codea2f AS codea2f '
+          . 'FROM utilisateur '
+          . 'WHERE utilisateur.id = :unId'
         );
         $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
         $requetePrepare->execute();
