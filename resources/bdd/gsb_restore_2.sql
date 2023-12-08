@@ -6,7 +6,7 @@ DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 CREATE USER IF NOT EXISTS 'userGsb'@'localhost' IDENTIFIED BY 'secret';
 GRANT SHOW DATABASES ON *.* TO 'userGsb'@'localhost';
-GRANT ALL PRIVILEGES ON `gsb_frais_B3`.* TO userGsb@localhost;
+GRANT ALL PRIVILEGES ON `gsb_frais`.* TO userGsb@localhost;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 USE gsb_frais ;
 
@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS etat (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
+DROP TABLE IF EXISTS visiteur ;
 CREATE TABLE IF NOT EXISTS visiteur (
   id char(5) NOT NULL,
   nom char(30) DEFAULT NULL,
@@ -37,6 +38,7 @@ CREATE TABLE IF NOT EXISTS visiteur (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
+DROP TABLE IF EXISTS comptable ;
 CREATE TABLE IF NOT EXISTS comptable (
   id char(5) NOT NULL,
   nom char(30) DEFAULT NULL,
@@ -50,7 +52,28 @@ CREATE TABLE IF NOT EXISTS comptable (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
-insert into comptable(id,nom, prenom, login, mdp, adresse,cp, ville, dateembauche)
+DROP TABLE IF EXISTS utilisateur ;
+
+create table utilisateur as select * from visiteur;
+select * from utilisateur;
+alter table utilisateur add column statut int default 1;
+
+-- CREATE TABLE IF NOT EXISTS utilisateur (
+ --  id char(5) NOT NULL,
+--  nom char(30) DEFAULT NULL,
+--  prenom char(30)  DEFAULT NULL, 
+--  login char(20) DEFAULT NULL,
+--  mdp char(20) DEFAULT NULL,
+--  adresse char(30) DEFAULT NULL,
+--  cp char(5) DEFAULT NULL,
+--  ville char(30) DEFAULT NULL,
+--  dateembauche date DEFAULT NULL,
+--  statut int DEFAULT 1,
+--  PRIMARY KEY (id)
+-- ) ENGINE=InnoDB;
+
+
+insert into comptable(id, nom, prenom, login, mdp, adresse,cp, ville, dateembauche)
 values('666666','Dupont','Martin','m.dupont','1','52 rue de Penthièvre','95000','PONTOISE','1987-06-14');
 
 CREATE TABLE IF NOT EXISTS fichefrais (

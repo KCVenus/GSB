@@ -22,7 +22,7 @@
 </div>
 <div id="accueil">
     <h2>
-        Gestion des frais<small> - Visiteur : 
+        Gestion des frais<small> - <?= $_SESSION['statut'] ?> : 
             <?= $_SESSION['prenom'] . ' ' . $_SESSION['nom'] ?></small>
     </h2>
 </div>

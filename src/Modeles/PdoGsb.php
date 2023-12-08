@@ -103,6 +103,21 @@ class PdoGsb
         $requetePrepare->execute();
         return $requetePrepare->fetch(PDO::FETCH_ASSOC);
     }
+    
+     public function getInfosUtilisateur($login, $mdp, $statut): array
+    {
+        $req= 'SELECT id AS id, nom AS nom, prenom AS prenom FROM utilisateur' 
+                . ' WHERE login = :unLogin AND mdp = :unMdp AND statut = :statut ';
+        
+        $requetePrepare = $this->connexion->prepare($req);
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':statut', $statut, PDO::PARAM_INT);
+
+        $requetePrepare->execute();
+        return $requetePrepare->fetch(PDO::FETCH_ASSOC);
+    }
+    
     /**
      * Retourne true si le couple login,mdp correspond à un comptable, false sinon.
      * @param type $login
@@ -123,6 +138,27 @@ class PdoGsb
     
     }
     /**
+     * Methode qui retourne le statut d'un utilisateur: 1 pour visiteur et 2 pour comptable;
+     * @param type $login
+     * @param type $mdp
+     * @return type
+     */
+     public function getStatutUtilisateur($login, $mdp){
+         $requetePrepare = $this->connexion->prepare(
+            'SELECT u.statut '
+            . 'FROM utilisateur u '
+            . 'WHERE u.login = :unLogin AND u.mdp = :unMdp'
+        );
+        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
+        $requetePrepare->execute();
+
+        return $requetePrepare->fetch(PDO::FETCH_COLUMN) ;
+    
+    }
+    
+    
+    /**
      * Retourne true si le couple login,mdp correspond à un visiteur, false sinon.
      * @param type $login
      * @param type $mdp
@@ -140,6 +176,32 @@ class PdoGsb
     
     }
 
+    ///fonctions nécessaires à lauthentification à double facteur:--------------------------//
+    
+    public function setCodeA2f($id, $code) {
+    $requetePrepare = $this->connexion->prepare(
+        'UPDATE visiteur '
+      . 'SET codea2f = :unCode '
+      . 'WHERE visiteur.id = :unIdVisiteur '
+    );
+    $requetePrepare->bindParam(':unCode', $code, PDO::PARAM_STR);
+    $requetePrepare->bindParam(':unIdVisiteur', $id, PDO::PARAM_STR);
+    $requetePrepare->execute();
+    }
+
+    public function getCodeVisiteur($id) {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT visiteur.codea2f AS codea2f '
+          . 'FROM visiteur '
+          . 'WHERE visiteur.id = :unId'
+        );
+        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $requetePrepare->fetch()['codea2f'];
+    }
+    
+//---------------------------------------------------------------------------------//
+    
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais
      * hors forfait concernées par les deux arguments.
