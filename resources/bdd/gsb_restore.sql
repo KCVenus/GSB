@@ -1,12 +1,13 @@
 -- Script de restauration de l'application "GSB Frais"
+drop database gsb_frais;
 
 -- Administration de la base de données
-CREATE DATABASE IF NOT EXISTS gsb_frais_B3
+CREATE DATABASE IF NOT EXISTS gsb_frais
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
 CREATE USER IF NOT EXISTS 'userGsb'@'localhost' IDENTIFIED BY 'secret';
 GRANT SHOW DATABASES ON *.* TO 'userGsb'@'localhost';
-GRANT ALL PRIVILEGES ON `gsb_frais_B3`.* TO userGsb@localhost;
+GRANT ALL PRIVILEGES ON `gsb_frais`.* TO userGsb@localhost;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 USE gsb_frais ;
 

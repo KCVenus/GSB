@@ -15,7 +15,7 @@ foreach ($utilisateurs as $utilisateur) {
     $login = $utilisateur['id'];
     
     $hashMdp = password_hash($mdp, PASSWORD_DEFAULT);
-    $req = $pdo->prepare('UPDATE utilisateur SET mdp= :hashMdp  WHERE id= :unId ');
+    $req = $pdo->prepare("UPDATE utilisateur SET mdp= :hashMdp  WHERE id= :unId ");
     $req->bindParam(':unId',$login, PDO::PARAM_STR);
     $req->bindParam(':hashMdp',$hashMdp, PDO::PARAM_STR);
     $req->execute();

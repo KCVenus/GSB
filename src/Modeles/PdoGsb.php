@@ -104,7 +104,7 @@ class PdoGsb
         return $requetePrepare->fetch(PDO::FETCH_ASSOC);
     }
     
-     public function getInfosUtilisateur($login, $statut): array
+     public function getInfosUtilisateur($login, $statut): array|bool
     {
         $req= 'SELECT id AS id, nom AS nom, prenom AS prenom, email AS email '
                 . ' FROM utilisateur' 

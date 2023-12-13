@@ -15,7 +15,8 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  * @link      https://getbootstrap.com/docs/3.3/ Documentation Bootstrap v3
  */
-
+if($_SESSION["statut"] == "Comptable"){$icon = 'euro';} elseif ($_SESSION["statut"] == "Visiteur"){$icon = 'pencil';}
+if($_SESSION["statut"] == "Comptable"){$icon1 = 'ok';} elseif ($_SESSION["statut"] == "Visiteur"){$icon1 = 'list-alt';}
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,14 +55,18 @@
                             </li>
                             <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
                                 <a href="index.php?uc=gererFrais&action=saisirFrais">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                    Renseigner la fiche de frais
+                                    <span class="glyphicon glyphicon-<?php echo $icon1 ?>"></span>
+                                     <?php if($_SESSION["statut"] == "Visiteur"){echo "Afficher mes fiches de frais";}
+                                            elseif($_SESSION["statut"] == "Comptable"){echo "Valider les fiches de frais";}
+                                    ?> 
                                 </a>
                             </li>
                             <li <?php if ($uc == 'etatFrais') { ?>class="active"<?php } ?>>
                                 <a href="index.php?uc=etatFrais&action=selectionnerMois">
-                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                    Afficher mes fiches de frais
+                                    <span class="glyphicon glyphicon-<?php echo $icon ?>"></span>
+                                    <?php if($_SESSION["statut"] == "Visiteur"){echo "Renseigner la fiche de frais";}
+                                            elseif($_SESSION["statut"] == "Comptable"){echo "Suivre le paiement des fiches de frais";} 
+                                    ?> 
                                 </a>
                             </li>
                             <li 
@@ -86,3 +91,6 @@
                 </h1>
                 <?php
             }
+         
+            
+            

@@ -31,25 +31,32 @@ switch ($action) {
         
         $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $statut = $pdo->getStatutUtilisateur($login);
-        $utilisateur = $pdo->getInfosUtilisateur($login,$statut);
-        
-        if (!password_verify($mdp,$pdo->getMdpUtilisateur($login))) {
-            Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
-            include PATH_VIEWS . 'v_erreurs.php';
-            include PATH_VIEWS . 'v_connexion.php';
-            
-        } else {
-            $id = $utilisateur['id'];
-            $nom = $utilisateur['nom'];
-            $prenom = $utilisateur['prenom'];
-            Utilitaires::connecter($id, $nom, $prenom, $statut);            
-            $email = $utilisateur['email'];
-            $code = rand(1000, 9999);
-            $pdo->setCodeA2f($id,$code);
-            mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
-            include PATH_VIEWS . 'v_code2facteurs.php';
-        }
+       
+            $statut = $pdo->getStatutUtilisateur($login);
+            $utilisateur = $pdo->getInfosUtilisateur($login,$statut);
+
+            if(!($login && $mdp)){
+                Utilitaires::ajouterErreur('Veuillez saisir un login et un mot de passe');
+                include PATH_VIEWS . 'v_erreurs.php';
+                include PATH_VIEWS . 'v_connexion.php';
+            }
+            else if (!password_verify($mdp,$pdo->getMdpUtilisateur($login))) {
+                Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
+                include PATH_VIEWS . 'v_erreurs.php';
+                include PATH_VIEWS . 'v_connexion.php';
+            } 
+                else {
+                $id = $utilisateur['id'];
+                $nom = $utilisateur['nom'];
+                $prenom = $utilisateur['prenom'];
+                Utilitaires::connecter($id, $nom, $prenom, $statut);            
+                $email = $utilisateur['email'];
+                $code = rand(1000, 9999);
+                $pdo->setCodeA2f($id,$code);
+                mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
+                include PATH_VIEWS . 'v_code2facteurs.php';
+            }
+       
         
         break;
     
