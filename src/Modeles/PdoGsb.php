@@ -82,77 +82,35 @@ class PdoGsb
         return self::$instance;
     }
 
-    /**
-     * Retourne les informations d'un employe (visiteur ou comptable)
-     *
-     * @param String $login Login du visiteur
-     * @param String $mdp   Mot de passe du visiteur
-     * @param String $table Table correspondant au statut de l'employé qui se connecte ('visiteur' ou 'comptable')
-     * @return l'id, le nom et le prénom sous la forme d'un tableau associatif
-     */
-    public function getInfos($login, $mdp, $table): array
-    {
-        $req= 'SELECT id AS id, nom AS nom, prenom AS prenom FROM ' 
-                . $table
-                . ' WHERE login = :unLogin AND mdp = :unMdp ';
-        
-        $requetePrepare = $this->connexion->prepare($req);
-        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
-
-        $requetePrepare->execute();
-        return $requetePrepare->fetch(PDO::FETCH_ASSOC);
-    }
-    
-     public function getInfosUtilisateur($login, $statut): array|bool
+     public function getInfosUtilisateur($login, $role): array|bool
     {
         $req= 'SELECT id AS id, nom AS nom, prenom AS prenom, email AS email '
                 . ' FROM utilisateur' 
-                . ' WHERE login = :unLogin AND statut = :statut ';
+                . ' WHERE login = :unLogin AND role = :role ';
         
         $requetePrepare = $this->connexion->prepare($req);
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':statut', $statut, PDO::PARAM_INT);
+        $requetePrepare->bindParam(':role', $role, PDO::PARAM_INT);
 
         $requetePrepare->execute();
         return $requetePrepare->fetch(PDO::FETCH_ASSOC);
     }
     
-    /**
-     * Retourne true si le couple login,mdp correspond à un comptable, false sinon.
-     * @param type $login
-     * @param type $mdp
-     * @return type
-     */
-    public function verifierSiComptable($login, $mdp){
-         $requetePrepare = $this->connexion->prepare(
-            'SELECT c.login '
-            . 'FROM comptable c '
-            . 'WHERE c.login = :unLogin AND c.mdp = :unMdp'
-        );
-        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
-        $requetePrepare->execute();
-
-        return $requetePrepare->fetch() ? true : false ;
-    
-    }
     /**
      * Methode qui retourne le statut d'un utilisateur: 1 pour visiteur et 2 pour comptable;
      * @param type $login
      * @param type $mdp
      * @return type
      */
-     public function getStatutUtilisateur($login){
+     public function getRoleUtilisateur($login){
          $requetePrepare = $this->connexion->prepare(
-            'SELECT u.statut '
+            'SELECT u.role '
             . 'FROM utilisateur u '
             . 'WHERE u.login = :unLogin '
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
         $requetePrepare->execute();
         return $requetePrepare->fetch(PDO::FETCH_COLUMN) ;
-    
     }
     
      public function getMdpUtilisateur($login) {
@@ -184,7 +142,6 @@ class PdoGsb
     
     }
 
-    ///fonctions nécessaires à lauthentification à double facteur:--------------------------//
     
     public function setCodeA2f($id, $code) {
     $requetePrepare = $this->connexion->prepare(
@@ -208,7 +165,7 @@ class PdoGsb
         return $requetePrepare->fetch()['codea2f'];
     }
     
-//---------------------------------------------------------------------------------//
+
     
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais

@@ -16,14 +16,6 @@
  * @link      https://getbootstrap.com/docs/3.3/ Documentation Bootstrap v3
  */
 
-if ( !isset($_SESSION['role']) || $_SESSION["role"] == "Visiteur" ){
-    $icon = 'pencil';
-    $icon1 = 'list-alt';
-}
-elseif($_SESSION["role"] == "Comptable"){
-    $icon = 'euro';
-    $icon1 = 'ok';}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,9 +27,9 @@ elseif($_SESSION["role"] == "Comptable"){
         <meta name="author" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="./styles/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="./styles/style.css" rel="stylesheet">
+        <link href="./styles/style_comptable.css" rel="stylesheet">
     </head>
-    <body>  
+    <body>
         <div class="container">
             <?php
             $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -62,18 +54,14 @@ elseif($_SESSION["role"] == "Comptable"){
                             </li>
                             <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
                                 <a href="index.php?uc=gererFrais&action=saisirFrais">
-                                    <span class="glyphicon glyphicon-<?php echo $icon1 ?>"></span>
-                                     <?php if($_SESSION["role"] == "Visiteur"){echo "Afficher mes fiches de frais";}
-                                            elseif($_SESSION["role"] == "Comptable"){echo "Valider les fiches de frais";}
-                                    ?> 
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    Valider fiche de frais
                                 </a>
                             </li>
                             <li <?php if ($uc == 'etatFrais') { ?>class="active"<?php } ?>>
                                 <a href="index.php?uc=etatFrais&action=selectionnerMois">
-                                    <span class="glyphicon glyphicon-<?php echo $icon ?>"></span>
-                                    <?php if($_SESSION["role"] == "Visiteur"){echo "Renseigner la fiche de frais";}
-                                            elseif($_SESSION["role"] == "Comptable"){echo "Suivre le paiement des fiches de frais";} 
-                                    ?> 
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                    Afficher mes fiches de frais
                                 </a>
                             </li>
                             <li 
@@ -98,6 +86,3 @@ elseif($_SESSION["role"] == "Comptable"){
                 </h1>
                 <?php
             }
-         
-            
-            

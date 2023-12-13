@@ -17,7 +17,8 @@
 
 if ($estConnecte) {
     include_once PATH_VIEWS . 'v_entete.php';
-	include PATH_VIEWS . 'v_accueil.php';
-} else {
+    include PATH_VIEWS . 'v_accueil.php';
+}
+else {
     include PATH_VIEWS . 'v_connexion.php';
 }

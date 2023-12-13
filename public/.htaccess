@@ -1,4 +1,8 @@
 RewriteEngine on
-
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php  [QSA,L]
+
+#DirectoryIndex index.php
+#RewriteEngine On
+#RewriteCond %{REQUEST_URI} !^/(?:index\.php$|public/|.+\.(?:jpe?g|gif|png|ico|tiff|css|js)$) [NC]
+#RewriteRule . - [F]

@@ -26,37 +26,32 @@ switch ($action) {
     case 'demandeConnexion':
         include PATH_VIEWS . 'v_connexion.php';
         break;
-
     case 'valideConnexion': 
-        
         $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-       
-            $statut = $pdo->getStatutUtilisateur($login);
-            $utilisateur = $pdo->getInfosUtilisateur($login,$statut);
-
-            if(!($login && $mdp)){
-                Utilitaires::ajouterErreur('Veuillez saisir un login et un mot de passe');
-                include PATH_VIEWS . 'v_erreurs.php';
-                include PATH_VIEWS . 'v_connexion.php';
+        $role = $pdo->getRoleUtilisateur($login);
+        $utilisateur = $pdo->getInfosUtilisateur($login,$role);
+        if(!($login && $mdp)){
+            Utilitaires::ajouterErreur('Veuillez saisir un login et un mot de passe');
+            include PATH_VIEWS . 'v_erreurs.php';
+            include PATH_VIEWS . 'v_connexion.php';
             }
-            else if (!password_verify($mdp,$pdo->getMdpUtilisateur($login))) {
-                Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
-                include PATH_VIEWS . 'v_erreurs.php';
-                include PATH_VIEWS . 'v_connexion.php';
-            } 
-                else {
-                $id = $utilisateur['id'];
-                $nom = $utilisateur['nom'];
-                $prenom = $utilisateur['prenom'];
-                Utilitaires::connecter($id, $nom, $prenom, $statut);            
-                $email = $utilisateur['email'];
-                $code = rand(1000, 9999);
-                $pdo->setCodeA2f($id,$code);
-                mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
-                include PATH_VIEWS . 'v_code2facteurs.php';
-            }
-       
+        if (!password_verify($mdp,$pdo->getMdpUtilisateur($login))) {
+            Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
+            include PATH_VIEWS . 'v_erreurs.php';
+            include PATH_VIEWS . 'v_connexion.php';
+            
+        } else {
+            $id = $utilisateur['id'];
+            $nom = $utilisateur['nom'];
+            $prenom = $utilisateur['prenom'];
+            Utilitaires::connecter($id, $nom, $prenom, $role);            
+            $email = $utilisateur['email'];
+            $code = rand(1000, 9999);
+            $pdo->setCodeA2f($id,$code);
+            mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
+            include PATH_VIEWS . 'v_code2facteurs.php';
+        }
         
         break;
     
@@ -65,7 +60,6 @@ switch ($action) {
         $code = filter_input(INPUT_POST, 'code', FILTER_SANITIZE_NUMBER_INT);
         if ($pdo->getCodeUtilisateur($_SESSION['idUtilisateur']) !== $code) {
             Utilitaires::ajouterErreur('Code de vérification incorrect');
-//            header('Location: index.php');
             include PATH_VIEWS . 'v_erreurs.php';
             include PATH_VIEWS . 'v_code2facteurs.php';
         } else {
