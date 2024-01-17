@@ -18,8 +18,18 @@
 --
 -- Table structure for table `comptable`
 --
-
+use gsb_frais;
 DROP TABLE IF EXISTS `comptable`;
+DROP TABLE IF EXISTS `etat`;
+DROP TABLE IF EXISTS `fichefrais`;
+DROP TABLE IF EXISTS `fraisforfait`;
+DROP TABLE IF EXISTS `lignefraisforfait`;
+DROP TABLE IF EXISTS `lignefraishorsforfait`;
+DROP TABLE IF EXISTS `roles`;
+DROP TABLE IF EXISTS `utilisateur`;
+DROP TABLE IF EXISTS `visiteur`;
+
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `comptable` (
@@ -40,8 +50,8 @@ CREATE TABLE `comptable` (
 -- Table structure for table `etat`
 --
 
-DROP TABLE IF EXISTS `etat`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+
+/*!40101 SET @saved_cs_client = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `etat` (
   `id` char(2) NOT NULL,
@@ -54,7 +64,7 @@ CREATE TABLE `etat` (
 -- Table structure for table `fichefrais`
 --
 
-DROP TABLE IF EXISTS `fichefrais`;
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `fichefrais` (
@@ -66,7 +76,7 @@ CREATE TABLE `fichefrais` (
   `idetat` char(2) DEFAULT 'CR',
   PRIMARY KEY (`idvisiteur`,`mois`),
   KEY `idetat` (`idetat`),
-  CONSTRAINT `fichefrais_ibfk_1` FOREIGN KEY (`idetat`) REFERENCES `etat` (`id`),
+  CONSTRAINT `fichefrais_ibfk_1` FOREIGN KEY (`idetat`) REFERENCES `etat`(`id`),
   CONSTRAINT `fichefrais_ibfk_2` FOREIGN KEY (`idvisiteur`) REFERENCES `visiteur` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -75,7 +85,7 @@ CREATE TABLE `fichefrais` (
 -- Table structure for table `fraisforfait`
 --
 
-DROP TABLE IF EXISTS `fraisforfait`;
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `fraisforfait` (
@@ -90,7 +100,7 @@ CREATE TABLE `fraisforfait` (
 -- Table structure for table `lignefraisforfait`
 --
 
-DROP TABLE IF EXISTS `lignefraisforfait`;
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `lignefraisforfait` (
@@ -109,7 +119,7 @@ CREATE TABLE `lignefraisforfait` (
 -- Table structure for table `lignefraishorsforfait`
 --
 
-DROP TABLE IF EXISTS `lignefraishorsforfait`;
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `lignefraishorsforfait` (
@@ -129,7 +139,7 @@ CREATE TABLE `lignefraishorsforfait` (
 -- Table structure for table `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roles` (
@@ -143,7 +153,7 @@ CREATE TABLE `roles` (
 -- Table structure for table `utilisateur`
 --
 
-DROP TABLE IF EXISTS `utilisateur`;
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `utilisateur` (
@@ -168,7 +178,7 @@ CREATE TABLE `utilisateur` (
 -- Table structure for table `visiteur`
 --
 
-DROP TABLE IF EXISTS `visiteur`;
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `visiteur` (
