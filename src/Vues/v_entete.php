@@ -69,7 +69,8 @@ elseif($_SESSION["role"] == "Comptable"){
                                 </a>
                             </li>
                             <li <?php if ($uc == 'etatFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=etatFrais&action=selectionnerMois">
+                                <a href="index.php?uc=etatFrais&action=selectionnerMois"
+                                    >
                                     <span class="glyphicon glyphicon-<?php echo $icon ?>"></span>
                                     <?php if($_SESSION["role"] == "Visiteur"){echo "Renseigner la fiche de frais";}
                                             elseif($_SESSION["role"] == "Comptable"){echo "Suivre le paiement des fiches de frais";} 

@@ -487,6 +487,31 @@ class PdoGsb
         }
         return $lesMois;
     }
+    
+    public function getLesMoisCloturesDisponibles($idVisiteur): array
+    {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT distinct fichefrais.mois AS mois FROM fichefrais '
+            . 'WHERE fichefrais.idvisiteur = :unIdVisiteur  '
+                . " AND fichefrais.idetat='CL'"
+            . 'ORDER BY fichefrais.mois desc'
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $requetePrepare->debugDumpParams();
+        $lesMois = array();
+        while ($laLigne = $requetePrepare->fetch()) {
+            $mois = $laLigne['mois'];
+            $numAnnee = substr($mois, 0, 4);
+            $numMois = substr($mois, 4, 2);
+            $lesMois[] = array(
+                'mois' => $mois,
+                'numAnnee' => $numAnnee,
+                'numMois' => $numMois
+            );
+        }
+        return $lesMois;
+    }
 
     /**
      * Retourne les informations d'une fiche de frais d'un visiteur pour un
