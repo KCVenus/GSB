@@ -166,6 +166,16 @@ class PdoGsb
     }
     
 
+    public function getNomsVisiteurs(){
+          $requetePrepare = $this->connexion->prepare(
+            'SELECT nom, prenom'
+          . ' FROM utilisateur WHERE role=1'
+        );
+        
+        $requetePrepare->execute();
+        return $requetePrepare->fetchAll(PDO::FETCH_ASSOC);
+        
+    }
     
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais
@@ -488,17 +498,14 @@ class PdoGsb
         return $lesMois;
     }
     
-    public function getLesMoisCloturesDisponibles($idVisiteur): array
+    public function getLesMoisCloturesDisponibles(): array
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT distinct fichefrais.mois AS mois FROM fichefrais '
-            . 'WHERE fichefrais.idvisiteur = :unIdVisiteur  '
-                . " AND fichefrais.idetat='CL'"
+            . " WHERE fichefrais.idetat='CL'"
             . 'ORDER BY fichefrais.mois desc'
         );
-        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->execute();
-        $requetePrepare->debugDumpParams();
         $lesMois = array();
         while ($laLigne = $requetePrepare->fetch()) {
             $mois = $laLigne['mois'];

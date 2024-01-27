@@ -28,24 +28,9 @@ switch ($action) {
              $lesCles = array_keys($lesMois);
             $moisASelectionner = $lesCles[0];
             include PATH_VIEWS . 'v_listeMois.php';
-        }else{
-            $lesMois = $pdo->getLesMoisCloturesDisponibles($idVisiteur);
-            var_dump($lesMois);
-             $lesCles = array_keys($lesMois);
-            $moisASelectionner = $lesCles[0];
-            include PATH_VIEWS . 'v_listeMoisComptable.php';
-            
         }
-        // $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
-        // 
-        // Afin de sélectionner par défaut le dernier mois dans la zone de liste
-        // on demande toutes les clés, et on prend la première,
-        // les mois étant triés décroissants
-        // 
-       // $lesCles = array_keys($lesMois);
-        //$moisASelectionner = $lesCles[0];
-        //include PATH_VIEWS . 'v_listeMois.php';
         break;
+    
     case 'voirEtatFrais':
         $leMois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);

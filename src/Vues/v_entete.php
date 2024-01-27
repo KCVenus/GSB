@@ -60,20 +60,24 @@ elseif($_SESSION["role"] == "Comptable"){
                                     Accueil
                                 </a>
                             </li>
+                            
                             <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=gererFrais&action=saisirFrais">
-                                    <span class="glyphicon glyphicon-<?php echo $icon1 ?>"></span>
-                                     <?php if($_SESSION["role"] == "Visiteur"){echo "Afficher mes fiches de frais";}
-                                            elseif($_SESSION["role"] == "Comptable"){echo "Valider les fiches de frais";}
+                                <a 
+                                   <?php if($_SESSION["role"] == "Visiteur"){echo 'href="index.php?uc=gererFrais&action=saisirFrais"';}
+                                  elseif($_SESSION["role"] == "Comptable"){echo 'href="index.php?uc=gererFrais&action=selectionnerMoisComptable"';} 
+                                    ?>
+                                    >
+                                    <span class="glyphicon glyphicon-<?php echo $icon ?>"></span>
+                                    <?php if($_SESSION["role"] == "Visiteur"){echo "Renseigner la fiche de frais";}
+                                            elseif($_SESSION["role"] == "Comptable"){echo " Valider les fiches de frais";} 
                                     ?> 
                                 </a>
                             </li>
                             <li <?php if ($uc == 'etatFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=etatFrais&action=selectionnerMois"
-                                    >
-                                    <span class="glyphicon glyphicon-<?php echo $icon ?>"></span>
-                                    <?php if($_SESSION["role"] == "Visiteur"){echo "Renseigner la fiche de frais";}
-                                            elseif($_SESSION["role"] == "Comptable"){echo "Suivre le paiement des fiches de frais";} 
+                                <a href="index.php?uc=etatFrais&action=selectionnerMois">
+                                    <span class="glyphicon glyphicon-<?php echo $icon1 ?>"></span>
+                                     <?php if($_SESSION["role"] == "Visiteur"){echo "Afficher mes fiches de frais";}
+                                            elseif($_SESSION["role"] == "Comptable"){echo "Suivre le paiement des fiches de frais";}
                                     ?> 
                                 </a>
                             </li>

@@ -17,15 +17,29 @@
  */
 
 ?>
-<h2>Mes fiches de frais</h2>
+<h2>Valider fiche de frais</h2>
 <div class="row">
-    <div class="col-md-4">
-        <h3>Sélectionner un mois : </h3>
-    </div>
+
     <div class="col-md-4">
         <form action="index.php?uc=etatFrais&action=voirEtatFrais" 
               method="post" role="form">
             <div class="form-group">
+                
+                <label for="lstVisiteurs" accesskey="n">Choisir le visiteur : </label>
+                <select id="lstMois" name="lstVisiteurs" class="form-control">
+                    <?php
+                    foreach ($lesVisiteurs as $unVisiteur) {
+                        $prenom = $unVisiteur['prenom'];
+                        $nom = $unVisiteur['nom'];
+                            ?>
+                            <option value="<?php echo $nom.' '.$prenom ?>">
+                                <?php echo $nom.' '.$prenom ?> </option>
+                            <?php
+                    }
+                    ?>    
+
+                </select>
+
                 <label for="lstMois" accesskey="n">Mois : </label>
                 <select id="lstMois" name="lstMois" class="form-control">
                     <?php
@@ -33,17 +47,12 @@
                         $mois = $unMois['mois'];
                         $numAnnee = $unMois['numAnnee'];
                         $numMois = $unMois['numMois'];
-                        if ($mois == $moisASelectionner) {
-                            ?>
-                            <option selected value="<?php echo $mois ?>">
-                                <?php echo $numMois . '/' . $numAnnee ?> </option>
-                            <?php
-                        } else {
+                       
                             ?>
                             <option value="<?php echo $mois ?>">
                                 <?php echo $numMois . '/' . $numAnnee ?> </option>
                             <?php
-                        }
+                        
                     }
                     ?>    
 

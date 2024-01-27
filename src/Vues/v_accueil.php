@@ -40,18 +40,20 @@ elseif ($_SESSION["role"] == "Visiteur"){$icon = 'pencil';$icon1 = 'list-alt';}
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
-                        <a href="index.php?uc=gererFrais&action=saisirFrais"
-                           class="btn btn-success btn-lg" role="button">
+                        <a <?php if($_SESSION["role"] == "Visiteur"){echo 'href="index.php?uc=gererFrais&action=saisirFrais"';}
+                                  elseif($_SESSION["role"] == "Comptable"){echo 'href="index.php?uc=gererFrais&action=validerFrais"';} 
+                                    ?> class="btn btn-success btn-lg" role="button">
                             <span class="glyphicon glyphicon-<?php echo $icon ?>"></span>
                             <br><?php if($_SESSION["role"] == "Visiteur"){echo "Renseigner la fiche de frais";}
-                                            elseif($_SESSION["role"] == "Comptable"){echo "Suivre le paiement des fiches de frais";} 
-                                    ?> </a>
+                                            elseif($_SESSION["role"] == "Comptable"){echo "Valider les fiches de frais";} 
+                                    ?> 
+                        </a>
                         <a href="index.php?uc=etatFrais&action=selectionnerMois"
                            class="btn btn-primary btn-lg" role="button">
                             <span class="glyphicon glyphicon-<?php echo $icon1 ?>"></span>
                             <br><?php if($_SESSION["role"] == "Visiteur"){echo "Afficher mes fiches de frais";}
-                                            elseif($_SESSION["role"] == "Comptable"){echo "Valider les fiches de frais";}
-                                    ?> </a>
+                                            elseif($_SESSION["role"] == "Comptable"){echo "Suivre le paiement des fiches de frais";}
+                                ?> </a>
                     </div>
                 </div>
             </div>

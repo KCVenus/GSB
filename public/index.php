@@ -39,11 +39,9 @@ if ($uc && !$estConnecte) {
 switch ($uc) {
     
     case 'connexion':
-        
         include PATH_CTRLS . 'c_connexion.php';
         break;
     case 'accueil':
-        
         include PATH_CTRLS . 'c_accueil.php';
         break;
     case 'gererFrais':
