@@ -168,13 +168,11 @@ class PdoGsb
 
     public function getNomsVisiteurs(){
           $requetePrepare = $this->connexion->prepare(
-            'SELECT nom, prenom'
-          . ' FROM utilisateur WHERE role=1'
+            'SELECT DISTINCT nom, prenom, id '
+          . ' FROM utilisateur INNER JOIN fichefrais on fichefrais.idvisiteur=utilisateur.id '
         );
-        
         $requetePrepare->execute();
-        return $requetePrepare->fetchAll(PDO::FETCH_ASSOC);
-        
+        return $requetePrepare->fetchAll(PDO::FETCH_ASSOC);  
     }
     
     /**
@@ -189,7 +187,7 @@ class PdoGsb
      * @return tous les champs des lignes de frais hors forfait sous la forme
      * d'un tableau associatif
      */
-    public function getLesFraisHorsForfait($idVisiteur, $mois): array
+    public function getLesFraisHorsForfait($idVisiteur, $mois): array 
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT * FROM lignefraishorsforfait '
@@ -530,7 +528,7 @@ class PdoGsb
      * @return un tableau avec des champs de jointure entre une fiche de frais
      *         et la ligne d'état
      */
-    public function getLesInfosFicheFrais($idVisiteur, $mois): array
+    public function getLesInfosFicheFrais($idVisiteur, $mois): array| bool
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT fichefrais.idetat as idEtat, '

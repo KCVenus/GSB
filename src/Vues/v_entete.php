@@ -36,6 +36,7 @@ elseif($_SESSION["role"] == "Comptable"){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="./styles/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="./styles/style.css" rel="stylesheet">
+        <link href="./styles/style_comptable.css" rel="stylesheet">
     </head>
     <body>  
         <div class="container">
@@ -53,8 +54,8 @@ elseif($_SESSION["role"] == "Comptable"){
                         </h1>
                     </div>
                     <div class="col-md-8">
-                        <ul class="nav nav-pills pull-right" role="tablist">
-                            <li <?php if (!$uc || $uc == 'accueil') { ?>class="active" <?php } ?>>
+                        <ul class="nav nav-pills pull-right " role="tablist">
+                            <li <?php if (!$uc || $uc == 'accueil') { ?>class="active <?php if($_SESSION["role"] == "Comptable"){echo "orangetxt";}?>" <?php } ?> >
                                 <a href="index.php">
                                     <span class="glyphicon glyphicon-home"></span>
                                     Accueil
@@ -64,7 +65,7 @@ elseif($_SESSION["role"] == "Comptable"){
                             <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
                                 <a 
                                    <?php if($_SESSION["role"] == "Visiteur"){echo 'href="index.php?uc=gererFrais&action=saisirFrais"';}
-                                  elseif($_SESSION["role"] == "Comptable"){echo 'href="index.php?uc=gererFrais&action=selectionnerMoisComptable"';} 
+                                  elseif($_SESSION["role"] == "Comptable"){echo 'href="index.php?uc=validerFrais&action=selectionnerMoisComptable"';} 
                                     ?>
                                     >
                                     <span class="glyphicon glyphicon-<?php echo $icon ?>"></span>

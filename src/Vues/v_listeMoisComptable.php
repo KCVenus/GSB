@@ -21,18 +21,19 @@
 <div class="row">
 
     <div class="col-md-4">
-        <form action="index.php?uc=etatFrais&action=voirEtatFrais" 
+        <form action="index.php?uc=validerFrais&action=voirEtatFrais" 
               method="post" role="form">
             <div class="form-group">
                 
                 <label for="lstVisiteurs" accesskey="n">Choisir le visiteur : </label>
-                <select id="lstMois" name="lstVisiteurs" class="form-control">
+                <select id="lstVisiteurs" name="lstVisiteurs" class="form-control">
                     <?php
                     foreach ($lesVisiteurs as $unVisiteur) {
                         $prenom = $unVisiteur['prenom'];
                         $nom = $unVisiteur['nom'];
+                        $id = $unVisiteur['id'];
                             ?>
-                            <option value="<?php echo $nom.' '.$prenom ?>">
+                            <option value="<?php echo $id ?>">
                                 <?php echo $nom.' '.$prenom ?> </option>
                             <?php
                     }

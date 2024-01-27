@@ -51,7 +51,8 @@ CREATE TABLE `etat` (
 
 LOCK TABLES `etat` WRITE;
 /*!40000 ALTER TABLE `etat` DISABLE KEYS */;
-INSERT INTO `etat` VALUES ('CL','Saisie clôturée'),('CR','Fiche créée, saisie en cours'),('RB','Remboursée'),('VA','Validée et mise en paiement');
+INSERT INTO `etat` VALUES ('CL','Saisie clôturée'),('CR','Fiche créée, saisie en cours'),('RB','Remboursée'),
+('VA','Validée et mise en paiement'),('MP','Mise en paiment');
 /*!40000 ALTER TABLE `etat` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,7 +73,7 @@ CREATE TABLE `fichefrais` (
   PRIMARY KEY (`idvisiteur`,`mois`),
   KEY `idetat` (`idetat`),
   CONSTRAINT `fichefrais_ibfk_1` FOREIGN KEY (`idetat`) REFERENCES `etat`(`id`),
-  CONSTRAINT `fichefrais_ibfk_2` FOREIGN KEY (`idvisiteur`) REFERENCES `visiteur` (`id`)
+  CONSTRAINT `fichefrais_ibfk_2` FOREIGN KEY (`idvisiteur`) REFERENCES `utilisateur` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
