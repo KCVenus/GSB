@@ -44,7 +44,8 @@
                     <td>
                         <a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=<?php echo $id ?>" 
                            onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');">
-                            Supprimer ce frais
+                            <button class="btn btn-success" type="submit">Corriger</button>
+                            <button class="btn btn-danger" type="reset">Réinitialiser</button>
                         </a>
                     </td>
                 </tr>
@@ -55,7 +56,8 @@
         </table>
     </div>
 </div>
-<div class="row">
+<?php if($_SESSION['role']=='Visiteur'){
+    echo  '<div class="row">
     <h3>Nouvel élément hors forfait</h3>
     <div class="col-md-4">
         <form action="index.php?uc=gererFrais&action=validerCreationFrais" 
@@ -80,4 +82,4 @@
             <button class="btn btn-danger" type="reset">Effacer</button>
         </form>
     </div>
-</div>
+</div>' ;} ?>

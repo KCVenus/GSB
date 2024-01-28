@@ -36,7 +36,10 @@ elseif($_SESSION["role"] == "Comptable"){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="./styles/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="./styles/style.css" rel="stylesheet">
-        <link href="./styles/style_comptable.css" rel="stylesheet">
+        <?php 
+            if(isset($_SESSION['role']) && $_SESSION["role"] == "Comptable")
+                {echo '<link href="./styles/style_comptable.css" rel="stylesheet">';}
+        ?>
     </head>
     <body>  
         <div class="container">
@@ -55,7 +58,7 @@ elseif($_SESSION["role"] == "Comptable"){
                     </div>
                     <div class="col-md-8">
                         <ul class="nav nav-pills pull-right " role="tablist">
-                            <li <?php if (!$uc || $uc == 'accueil') { ?>class="active <?php if($_SESSION["role"] == "Comptable"){echo "orangetxt";}?>" <?php } ?> >
+                            <li <?php if (!$uc || $uc == 'accueil') { ?>class="active" <?php } ?> >
                                 <a href="index.php">
                                     <span class="glyphicon glyphicon-home"></span>
                                     Accueil
