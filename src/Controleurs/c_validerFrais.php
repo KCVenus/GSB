@@ -52,9 +52,6 @@ switch ($action) {
         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $mois);
         $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $mois);
         require PATH_VIEWS . 'v_listeFraisForfait.php';
-        require PATH_VIEWS . 'v_listeFraisHorsForfait.php';
-            
+        require PATH_VIEWS . 'v_listeFraisHorsForfait.php';   
         }
-        
-    
 }

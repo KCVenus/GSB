@@ -41,7 +41,7 @@ elseif ($_SESSION["role"] == "Visiteur"){$icon = 'pencil';$icon1 = 'list-alt';}
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
                         <a <?php if($_SESSION["role"] == "Visiteur"){echo 'href="index.php?uc=gererFrais&action=saisirFrais"';}
-                                  elseif($_SESSION["role"] == "Comptable"){echo 'href="index.php?uc=gererFrais&action=selectionnerMoisComptable"';} 
+                                  elseif($_SESSION["role"] == "Comptable"){echo 'href="index.php?uc=validerFrais&action=selectionnerMoisComptable"';} 
                                     ?> class="btn btn-success btn-lg" role="button">
                             <span class="glyphicon glyphicon-<?php echo $icon ?>"></span>
                             <br><?php if($_SESSION["role"] == "Visiteur"){echo "Renseigner la fiche de frais";}
