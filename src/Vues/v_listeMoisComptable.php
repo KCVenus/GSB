@@ -28,15 +28,30 @@
                 <label for="lstVisiteurs" accesskey="n">Choisir le visiteur : </label>
                 <select id="lstVisiteurs" name="lstVisiteurs" class="form-control">
                     <?php
-                    foreach ($lesVisiteurs as $unVisiteur) {
-                        $prenom = $unVisiteur['prenom'];
-                        $nom = $unVisiteur['nom'];
-                        $id = $unVisiteur['id'];
-                            ?>
-                            <option value="<?php echo $id ?>">
-                                <?php echo $nom.' '.$prenom ?> </option>
-                            <?php
-                    }
+                   
+                        foreach ($lesVisiteurs as $unVisiteur) {
+                            $prenom = $unVisiteur['prenom'];
+                            $nom = $unVisiteur['nom'];
+                            $id = $unVisiteur['id'];
+//                             if(!isset($idVisiteur) && $id==$infosVisiteur['id]){
+                                ?>
+                                <option value="<?php echo $id ?>" 
+                                    <?php if(isset($idVisiteur) && $id==$infosVisiteur['id']){echo 'selected';} ?> >
+                                    <?php echo $nom.' '.$prenom ?> </option>
+                                <?php
+                        }
+                    
+//                    }else{
+//                        $prenom = $infosVisiteur['prenom'];
+//                            $nom = $infosVisiteur['nom'];
+//                            $id = $infosVisiteur['id'];
+//                        
+//                             ?>
+                        <option value="//<?php echo $id ?>">
+                                    //<?php echo $nom.' '.$prenom ?> </option>
+                                //<?php
+//                        
+//                    }
                     ?>    
 
                 </select>
@@ -50,7 +65,8 @@
                         $numMois = $unMois['numMois'];
                        
                             ?>
-                            <option value="<?php echo $mois ?>">
+                    <option value="<?php echo $mois ?>" 
+                        <?php if(isset($idVisiteur) && $mois==$leMois){echo 'selected';} ?>>
                                 <?php echo $numMois . '/' . $numAnnee ?> </option>
                             <?php
                         

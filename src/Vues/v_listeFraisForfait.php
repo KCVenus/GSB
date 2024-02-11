@@ -23,8 +23,11 @@
     </h2>
     <h3>Eléments forfaitisés</h3>
     <div class="col-md-4">
-        <form method="post" 
-              action="index.php?uc=gererFrais&action=validerMajFraisForfait" 
+        <form method="post"
+              
+              <?php if($_SESSION["role"] == "Visiteur"){echo 'action="index.php?uc=gererFrais&action=validerMajFraisForfait" ';}
+                elseif($_SESSION["role"] == "Comptable"){echo 'action="index.php?uc=validerFrais&action=validerMajFraisForfait" "';} 
+                  ?>
               role="form">
             <fieldset>       
                 <?php

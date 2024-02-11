@@ -96,6 +96,22 @@ class PdoGsb
         return $requetePrepare->fetch(PDO::FETCH_ASSOC);
     }
     
+    
+     public function getInfosUtilisateurById($id, $role): array|bool
+    {
+        $req= 'SELECT id AS id, nom AS nom, prenom AS prenom'
+                . ' FROM utilisateur' 
+                . ' WHERE id = :unid AND role = :role ';
+        
+        $requetePrepare = $this->connexion->prepare($req);
+        $requetePrepare->bindParam(':unid', $id, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':role', $role, PDO::PARAM_INT);
+
+        $requetePrepare->execute();
+        return $requetePrepare->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    
     /**
      * Methode qui retourne le statut d'un utilisateur: 1 pour visiteur et 2 pour comptable;
      * @param type $login
@@ -300,7 +316,9 @@ class PdoGsb
             $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
             $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
             $requetePrepare->bindParam(':idFrais', $unIdFrais, PDO::PARAM_STR);
+        
             $requetePrepare->execute();
+            
         }
     }
 
