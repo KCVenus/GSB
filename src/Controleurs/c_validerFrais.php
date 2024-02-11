@@ -32,18 +32,15 @@ switch ($action) {
        //menu déroulant visiteurs:
         $lesVisiteurs = $pdo->getNomsVisiteurs();
         $idVisiteur = filter_input(INPUT_POST, 'lstVisiteurs', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        //récupérer l'id du visiteur selectionné dans la vue, pour qu'il reste sélectionné quand on envoie le formulaire
-        $infosVisiteur = $pdo->getInfosUtilisateurById($idVisiteur, 1);
-        
+        $_SESSION['idVisiteur'] = $idVisiteur;
+
         //menu déroulant mois:
         $leMois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $_SESSION['leMois'] = $leMois;
         $lesMois = $pdo->getLesMoisCloturesDisponibles();
-        $moisASelectionner = $leMois;
         include PATH_VIEWS . 'v_listeMoisComptable.php';
         
-        //afficher les frais :
-        $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
-        $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
+       
         $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur, $leMois);
         if(!$lesInfosFicheFrais){
             Utilitaires::ajouterErreur("Aucune fiche de frais n'est à valider pour ce visiteur. Veuillez-en choisir un autre");
@@ -56,8 +53,8 @@ switch ($action) {
             $montantValide = $lesInfosFicheFrais['montantValide'];
             $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
             $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
-            $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $mois);
-            $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $mois);
+            $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
+            $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
             require PATH_VIEWS . 'v_listeFraisForfait.php';
             require PATH_VIEWS . 'v_listeFraisHorsForfait.php';
             
@@ -66,17 +63,25 @@ switch ($action) {
         
     case 'validerMajFraisForfait':
         $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
-        //récupérer le mois à afficher
-
-//            $leMois=filter_input(INPUT_GET, "lstMois", FILTER_DEFAULT);
-//            $mois=substr($leMois, 4, 2);
-//            
-//            if (Utilitaires::lesQteFraisValides($lesFrais)) {
-//                $pdo->majFraisForfait($idVisiteur, $mois, $lesFrais);
-//            } else {
-//                Utilitaires::ajouterErreur('Les valeurs des frais doivent être numériques');
-//                include PATH_VIEWS . 'v_erreurs.php';
-//            }
+        //récupérer le mois à afficher et l'id du visiteur
+        $idVisiteur = $_SESSION['idVisiteur'] ;
+        $leMois = $_SESSION['leMois'];
+        if (Utilitaires::lesQteFraisValides($lesFrais)) {
+            //modifier les frais:
+            $pdo->majFraisForfait($idVisiteur, $leMois, $lesFrais);
+            
+            //puis recharger la page : 
+            $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
+            $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
+            $lesVisiteurs = $pdo->getNomsVisiteurs();
+            $lesMois = $pdo->getLesMoisCloturesDisponibles();          
+            include PATH_VIEWS . 'v_listeMoisComptable.php';
+            require PATH_VIEWS . 'v_listeFraisForfait.php';
+            require PATH_VIEWS . 'v_listeFraisHorsForfait.php';
+        } else {
+            Utilitaires::ajouterErreur('Les valeurs des frais doivent être numériques');
+            include PATH_VIEWS . 'v_erreurs.php';
+        }
     break;
         
     

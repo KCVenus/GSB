@@ -36,7 +36,7 @@
 //                             if(!isset($idVisiteur) && $id==$infosVisiteur['id]){
                                 ?>
                                 <option value="<?php echo $id ?>" 
-                                    <?php if(isset($idVisiteur) && $id==$infosVisiteur['id']){echo 'selected';} ?> >
+                                    <?php if( isset($_SESSION['idVisiteur']) && $id==$_SESSION['idVisiteur']){echo 'selected';} ?> >
                                     <?php echo $nom.' '.$prenom ?> </option>
                                 <?php
                         }
@@ -66,7 +66,7 @@
                        
                             ?>
                     <option value="<?php echo $mois ?>" 
-                        <?php if(isset($idVisiteur) && $mois==$leMois){echo 'selected';} ?>>
+                        <?php if(  isset($_SESSION['idVisiteur']) && $mois==$_SESSION['leMois']){echo 'selected';} ?> >
                                 <?php echo $numMois . '/' . $numAnnee ?> </option>
                             <?php
                         
