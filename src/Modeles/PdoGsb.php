@@ -332,18 +332,19 @@ class PdoGsb
     
     
     
-        public function majFraisHorsForfait($idVisiteur, $mois, $libelle, $date, $montant): void
+        public function majFraisHorsForfait($idVisiteur, $mois, $libelle, $date, $montant, $idFrais): void
     {
-        $dateFr = Utilitaires::dateFrancaisVersAnglais($date);
+//        $dateFr = Utilitaires::dateFrancaisVersAnglais($date);
         $requetePrepare = $this->connexion->prepare(
             'UPDATE lignefraishorsforfait '
             . 'SET mois=:unMois, libelle=:unLibelle, date=:uneDateFr,'
-            . 'montant=:unMontant ' . ' WHERE idvisiteur=:unIdVisiteur'
+            . 'montant=:unMontant ' . ' WHERE idvisiteur=:unIdVisiteur AND id=:unIdFrais'
         );
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_INT);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unLibelle', $libelle, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':uneDateFr', $dateFr, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':uneDateFr', $date, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMontant', $montant, PDO::PARAM_INT);
         $requetePrepare->execute();
     }
@@ -588,7 +589,7 @@ class PdoGsb
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
-        $laLigne = $requetePrepare->fetch();
+        $laLigne = $requetePrepare->fetch(PDO::FETCH_ASSOC);
         return $laLigne;
     }
 

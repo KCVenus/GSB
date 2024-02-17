@@ -40,8 +40,7 @@ switch ($action) {
         $_SESSION['leMois'] = $leMois;
         $lesMois = $pdo->getLesMoisCloturesDisponibles();
         include PATH_VIEWS . 'v_listeMoisComptable.php';
-        
-       
+
         $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur, $leMois);
         if(!$lesInfosFicheFrais){
             Utilitaires::ajouterErreur("Aucune fiche de frais n'est à valider pour ce visiteur. Veuillez-en choisir un autre");
@@ -62,7 +61,19 @@ switch ($action) {
     break;
     
     case 'majFraisHorsForfait':
-        $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+
+        $idFrais = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $lesLibelles = filter_input(INPUT_POST, 'lesLibelles', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        $lesDates = filter_input(INPUT_POST, 'lesDates', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        $lesMontants = filter_input(INPUT_POST, 'lesMontants', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        $libelle = $lesLibelles[$idFrais];
+        $date = $lesDates[$idFrais];
+        $montant = $lesMontants[$idFrais];
+        $idVisiteur = $_SESSION['idVisiteur'];
+        $leMois = $_SESSION['leMois'];
+     
+       $pdo->majFraisHorsForfait($idVisiteur, $leMois, $libelle, $date, $montant, $idFrais);
+
         
     break;
         

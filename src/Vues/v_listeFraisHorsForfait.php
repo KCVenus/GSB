@@ -1,5 +1,5 @@
 <?php
-
+use Outils\Utilitaires;
 /**
  * Vue Liste des frais hors forfait
  *
@@ -41,15 +41,16 @@
                 $id = $unFraisHorsForfait['id']; 
             ?>   
                 
-            <!--<form method="post" role="form" id="<?php echo $id ?>" action="index.php?uc=validerFrais&action=majFraisHorsForfait">-->
+            <form method="post" action="index.php?uc=validerFrais&action=majFraisHorsForfait&id=<?php echo $id ?>" role="form">
             <tr>
 
                 <?php 
                     if ($_SESSION['role']=="Comptable"){
                         echo 
-                        '<td> <input value="'. $date .'"></input></td>'. 
-                            '<td><input value="'. $libelle .'"></input></td>' .
-                            '<td><input value="'. $montant .'"></input></td>';
+                        '<td> <input name="id" value=' . $id .' hidden > </input>'
+                                .' <input type="date" name="lesDates[' . $id. ']" value="'. Utilitaires::dateFrancaisVersAnglais($date).'"></input></td>'. 
+                            '<td><input name="lesLibelles[' . $id. ']" value="'. $libelle .'"></input></td>' .
+                            '<td><input name="lesMontants[' . $id. ']" value="'. $montant .'"></input></td>';
                     }
                     else{
                         echo '<td>'.$date .'</td>'.
@@ -61,7 +62,7 @@
             <td>
                 <?php 
                     if ($_SESSION['role']=="Comptable"){
-                        echo '<button class="btn btn-success" type="submit">Corriger</button>' 
+                        echo '<button class="btn btn-success" type="submit" action="index.php?uc=validerFrais&action=majFraisHorsForfait">Corriger</button>' 
                         . '<button class="btn btn-warning" type="reset">Réinitialiser</button>'
                         . '<button class="btn btn-danger">Refuser</button>';
                     }
@@ -77,7 +78,7 @@
 
             </tr>
             
-            <!--</form>-->
+            </form>
                 <?php
             }
             ?>

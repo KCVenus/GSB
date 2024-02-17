@@ -36,7 +36,7 @@ switch ($action) {
             include PATH_VIEWS . 'v_erreurs.php';
             include PATH_VIEWS . 'v_connexion.php';
             }
-        if (!password_verify($mdp,$pdo->getMdpUtilisateur($login))) {
+        else if (!password_verify($mdp,$pdo->getMdpUtilisateur($login))) {
             Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
             include PATH_VIEWS . 'v_erreurs.php';
             include PATH_VIEWS . 'v_connexion.php';
