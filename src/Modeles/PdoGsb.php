@@ -329,6 +329,24 @@ class PdoGsb
             
         }
     }
+    
+    
+    
+        public function majFraisHorsForfait($idVisiteur, $mois, $libelle, $date, $montant): void
+    {
+        $dateFr = Utilitaires::dateFrancaisVersAnglais($date);
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE lignefraishorsforfait '
+            . 'SET mois=:unMois, libelle=:unLibelle, date=:uneDateFr,'
+            . 'montant=:unMontant ' . ' WHERE idvisiteur=:unIdVisiteur'
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unLibelle', $libelle, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':uneDateFr', $dateFr, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMontant', $montant, PDO::PARAM_INT);
+        $requetePrepare->execute();
+    }
 
     /**
      * Met à jour le nombre de justificatifs de la table ficheFrais

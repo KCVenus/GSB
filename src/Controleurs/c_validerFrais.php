@@ -22,12 +22,13 @@ $idUtilisateur = $_SESSION['idUtilisateur'];
 $role = $_SESSION['role'];
 
 switch ($action) {
-   case 'selectionnerMoisComptable':
+    case 'selectionnerMoisComptable':
         $lesMois = $pdo->getLesMoisCloturesDisponibles();
         $lesVisiteurs = $pdo->getNomsVisiteurs();
         include PATH_VIEWS . 'v_listeMoisComptable.php';
         
     break;
+
     case 'voirEtatFrais':
        //menu déroulant visiteurs:
         $lesVisiteurs = $pdo->getNomsVisiteurs();
@@ -56,9 +57,13 @@ switch ($action) {
             $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
             $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
             require PATH_VIEWS . 'v_listeFraisForfait.php';
-            require PATH_VIEWS . 'v_listeFraisHorsForfait.php';
-            
+            require PATH_VIEWS . 'v_listeFraisHorsForfait.php';    
         }
+    break;
+    
+    case 'majFraisHorsForfait':
+        $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        
     break;
         
     case 'validerMajFraisForfait':
@@ -85,6 +90,5 @@ switch ($action) {
             include PATH_VIEWS . 'v_erreurs.php';
         }
     break;
-        
-    
+           
 }

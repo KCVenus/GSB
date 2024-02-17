@@ -39,11 +39,15 @@
                 $date = $unFraisHorsForfait['date'];
                 $montant = $unFraisHorsForfait['montant'];
                 $id = $unFraisHorsForfait['id']; 
-            ?>           
+            ?>   
+                
+            <!--<form method="post" role="form" id="<?php echo $id ?>" action="index.php?uc=validerFrais&action=majFraisHorsForfait">-->
             <tr>
+
                 <?php 
                     if ($_SESSION['role']=="Comptable"){
-                        echo '<td> <input value="'. $date .'"></input></td>'. 
+                        echo 
+                        '<td> <input value="'. $date .'"></input></td>'. 
                             '<td><input value="'. $libelle .'"></input></td>' .
                             '<td><input value="'. $montant .'"></input></td>';
                     }
@@ -54,12 +58,12 @@
                     }
                 ?>
 
-                <td>
-
-             <?php 
+            <td>
+                <?php 
                     if ($_SESSION['role']=="Comptable"){
                         echo '<button class="btn btn-success" type="submit">Corriger</button>' 
-                        . '<button class="btn btn-danger" type="reset">Réinitialiser</button>';
+                        . '<button class="btn btn-warning" type="reset">Réinitialiser</button>'
+                        . '<button class="btn btn-danger">Refuser</button>';
                     }
                     else{
                         echo '<a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=' . $id 
@@ -68,8 +72,12 @@
                     }
                 ?> 
 
-                </td>
+            </td>
+            
+
             </tr>
+            
+            <!--</form>-->
                 <?php
             }
             ?>
@@ -114,3 +122,4 @@
     </div>
 </div>' 
     ;} ?>
+
