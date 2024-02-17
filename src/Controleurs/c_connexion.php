@@ -36,7 +36,7 @@ switch ($action) {
             include PATH_VIEWS . 'v_erreurs.php';
             include PATH_VIEWS . 'v_connexion.php';
             }
-        if (!password_verify($mdp,$pdo->getMdpUtilisateur($login))) {
+        else if (!password_verify($mdp,$pdo->getMdpUtilisateur($login))) {
             Utilitaires::ajouterErreur('Login ou mot de passe incorrect');
             include PATH_VIEWS . 'v_erreurs.php';
             include PATH_VIEWS . 'v_connexion.php';
@@ -45,28 +45,29 @@ switch ($action) {
             $id = $utilisateur['id'];
             $nom = $utilisateur['nom'];
             $prenom = $utilisateur['prenom'];
-            Utilitaires::connecter($id, $nom, $prenom, $role);            
-            $email = $utilisateur['email'];
-            $code = rand(1000, 9999);
-            $pdo->setCodeA2f($id,$code);
-            mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
-            include PATH_VIEWS . 'v_code2facteurs.php';
+            Utilitaires::connecter($id, $nom, $prenom, $role);     
+            header('Location: index.php');
+//            $email = $utilisateur['email'];
+//            $code = rand(1000, 9999);
+//            $pdo->setCodeA2f($id,$code);
+//            mail($email, '[GSB-AppliFrais] Code de vérification', "Code : $code");
+//            include PATH_VIEWS . 'v_accueil.php';
         }
         
         break;
     
-    case 'valideA2fConnexion':
-
-        $code = filter_input(INPUT_POST, 'code', FILTER_SANITIZE_NUMBER_INT);
-        if ($pdo->getCodeUtilisateur($_SESSION['idUtilisateur']) !== $code) {
-            Utilitaires::ajouterErreur('Code de vérification incorrect');
-            include PATH_VIEWS . 'v_erreurs.php';
-            include PATH_VIEWS . 'v_code2facteurs.php';
-        } else {
-            Utilitaires::connecterA2f($code);
-            header('Location: index.php');
-        }
-        break;
+//    case 'valideA2fConnexion':
+//
+//        $code = filter_input(INPUT_POST, 'code', FILTER_SANITIZE_NUMBER_INT);
+//        if ($pdo->getCodeUtilisateur($_SESSION['idUtilisateur']) !== $code) {
+//            Utilitaires::ajouterErreur('Code de vérification incorrect');
+//            include PATH_VIEWS . 'v_erreurs.php';
+//            include PATH_VIEWS . 'v_code2facteurs.php';
+//        } else {
+//            Utilitaires::connecterA2f($code);
+//            header('Location: index.php');
+//        }
+//        break;
     default:
         include PATH_VIEWS . 'v_connexion.php';
         break;

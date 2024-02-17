@@ -18,6 +18,7 @@
 use Outils\Utilitaires;
 
 $idVisiteur = $_SESSION['idUtilisateur'];
+$role = $_SESSION['role'];
 $mois = Utilitaires::getMois(date('d/m/Y'));
 $numAnnee = substr($mois, 0, 4);
 $numMois = substr($mois, 4, 2);
@@ -28,6 +29,7 @@ switch ($action) {
             $pdo->creeNouvellesLignesFrais($idVisiteur, $mois);
         }
         break;
+ 
     case 'validerMajFraisForfait':
         $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
         if (Utilitaires::lesQteFraisValides($lesFrais)) {

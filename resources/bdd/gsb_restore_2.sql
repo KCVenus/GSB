@@ -17,12 +17,12 @@ USE `gsb_frais`;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
 -- 
 -- Drop tables 
 -- 
-
-DROP TABLE IF EXISTS `comptable`;
 DROP TABLE IF EXISTS `visiteur`;
+DROP TABLE IF EXISTS `comptable`;
 DROP TABLE IF EXISTS `etat`;
 DROP TABLE IF EXISTS `fichefrais`;
 DROP TABLE IF EXISTS `fraisforfait`;
@@ -34,6 +34,7 @@ DROP TABLE IF EXISTS `utilisateur`;
 --
 -- Table structure for table `etat`
 --
+
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -50,9 +51,59 @@ CREATE TABLE `etat` (
 
 LOCK TABLES `etat` WRITE;
 /*!40000 ALTER TABLE `etat` DISABLE KEYS */;
-INSERT INTO `etat` VALUES ('CL','Saisie clôturée'),('CR','Fiche créée, saisie en cours'),('RB','Remboursée'),('VA','Validée et mise en paiement');
+INSERT INTO `etat` VALUES ('CL','Saisie clôturée'),('CR','Fiche créée, saisie en cours'),('RB','Remboursée'),
+('VA','Validée et mise en paiement'),('MP','Mise en paiement');
 /*!40000 ALTER TABLE `etat` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `roles`
+--
+
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `roles` (
+  `id` int NOT NULL,
+  `nom` char(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roles`
+--
+
+
+--
+-- Table structure for table `utilisateur`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `utilisateur` (
+  `id` char(5) NOT NULL primary KEY,
+  `nom` char(30) DEFAULT NULL,
+  `prenom` char(30) DEFAULT NULL,
+  `login` char(20) DEFAULT NULL,
+  `mdp` char(100) DEFAULT NULL,
+  `adresse` char(30) DEFAULT NULL,
+  `cp` char(5) DEFAULT NULL,
+  `ville` char(30) DEFAULT NULL,
+  `dateembauche` date DEFAULT NULL,
+  `role` int DEFAULT '1',
+  `email` text,
+  `codea2f` char(4) DEFAULT NULL,
+  KEY `fk_utilisateur_roles` (`role`),
+  CONSTRAINT `fk_utilisateur_roles` FOREIGN KEY (`role`) REFERENCES `roles` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `utilisateur`
+--
+
+
 
 --
 -- Table structure for table `fichefrais`
@@ -70,11 +121,12 @@ CREATE TABLE `fichefrais` (
   `idetat` char(2) DEFAULT 'CR',
   PRIMARY KEY (`idvisiteur`,`mois`),
   KEY `idetat` (`idetat`),
-  CONSTRAINT `fichefrais_ibfk_1` FOREIGN KEY (`idetat`) REFERENCES `etat` (`id`),
-  CONSTRAINT `fichefrais_ibfk_2` FOREIGN KEY (`idvisiteur`) REFERENCES `visiteur` (`id`)
+  CONSTRAINT `fichefrais_ibfk_1` FOREIGN KEY (`idetat`) REFERENCES `etat`(`id`)
+  -- CONSTRAINT `fichefrais_ibfk_2` FOREIGN KEY (`idvisiteur`) REFERENCES `utilisateur` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+ALTER TABLE fichefrais ADD CONSTRAINT `fichefrais_ibfk_2` FOREIGN KEY (`idvisiteur`) REFERENCES `utilisateur` (`id`);
 --
 -- Dumping data for table `fichefrais`
 --
@@ -170,23 +222,6 @@ INSERT INTO `lignefraishorsforfait` VALUES (14354,'l530u','202303','Rémunérati
 /*!40000 ALTER TABLE `lignefraishorsforfait` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `roles`
---
-
-
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `roles` (
-  `id` int NOT NULL,
-  `nom` char(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `roles`
---
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
@@ -194,33 +229,6 @@ INSERT INTO `roles` VALUES (1,'visiteur'),(2,'comptable');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `utilisateur`
---
-
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `utilisateur` (
-  `id` char(5) NOT NULL,
-  `nom` char(30) DEFAULT NULL,
-  `prenom` char(30) DEFAULT NULL,
-  `login` char(20) DEFAULT NULL,
-  `mdp` char(100) DEFAULT NULL,
-  `adresse` char(30) DEFAULT NULL,
-  `cp` char(5) DEFAULT NULL,
-  `ville` char(30) DEFAULT NULL,
-  `dateembauche` date DEFAULT NULL,
-  `role` int DEFAULT '1',
-  `email` text,
-  `codea2f` char(4) DEFAULT NULL,
-  KEY `fk_utilisateur_roles` (`role`),
-  CONSTRAINT `fk_utilisateur_roles` FOREIGN KEY (`role`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `utilisateur`
---
 
 LOCK TABLES `utilisateur` WRITE;
 /*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
@@ -228,9 +236,6 @@ INSERT INTO `utilisateur` VALUES ('a118y','Ayot','Percy','p.ayot','$2y$10$ns4cOJ
 /*!40000 ALTER TABLE `utilisateur` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `visiteur`
---
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

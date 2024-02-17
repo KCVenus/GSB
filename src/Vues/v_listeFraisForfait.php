@@ -18,13 +18,16 @@
 
 ?>
 <div class="row">    
-    <h2>Renseigner ma fiche de frais du mois 
-        <?php echo $numMois . '-' . $numAnnee ?>
+    <h2><?php if($_SESSION["role"] == "Visiteur"){echo 'Renseigner ma fiche de frais du mois'. $numMois . '-' . $numAnnee;}
+        elseif($_SESSION["role"] == "Comptable")?>
     </h2>
     <h3>Eléments forfaitisés</h3>
     <div class="col-md-4">
-        <form method="post" 
-              action="index.php?uc=gererFrais&action=validerMajFraisForfait" 
+        <form method="post"
+              
+              <?php if($_SESSION["role"] == "Visiteur"){echo 'action="index.php?uc=gererFrais&action=validerMajFraisForfait" ';}
+                elseif($_SESSION["role"] == "Comptable"){echo 'action="index.php?uc=validerFrais&action=validerMajFraisForfait" "';} 
+                  ?>
               role="form">
             <fieldset>       
                 <?php
@@ -43,7 +46,8 @@
                     <?php
                 }
                 ?>
-                <button class="btn btn-success" type="submit">Ajouter</button>
+                <button class="btn btn-success" type="submit"><?php if($_SESSION["role"] == "Visiteur"){echo 'Ajouter';}
+                elseif($_SESSION["role"] == "Comptable"){echo 'Corriger';}?></button>
                 <button class="btn btn-danger" type="reset">Effacer</button>
             </fieldset>
         </form>

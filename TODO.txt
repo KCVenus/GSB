@@ -1,0 +1,19 @@
+-- GSB -- 
+
+
+1 - ENELEVER LA DOUBLE AUTH fait
+
+2 - TACHE 1 =
+	- faire la page de validation de ficher de frais ie :
+		- faire le menu déroulant avec les mois et les visisteurs et gérer l'affichage et pourvoir
+		  faire uen saisie à l'interieur
+		-   voir page 41 pour la validation de fiches de frais
+
+3 - TACHE 2 = 
+	- 
+
+
+
+
+TACHE DE FIN =
+	- gerer la couleur des menus en fonction du role  
