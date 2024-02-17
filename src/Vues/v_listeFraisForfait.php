@@ -34,7 +34,9 @@
                 foreach ($lesFraisForfait as $unFrais) {
                     $idFrais = $unFrais['idfrais'];
                     $libelle = htmlspecialchars($unFrais['libelle']);
-                    $quantite = $unFrais['quantite']; ?>
+                    
+                    $quantite = $idFrais=='KM' ? $unFrais['quantite']*$prixKm['prix'] : $unFrais['quantite'] ; ?>
+                
                     <div class="form-group">
                         <label for="idFrais"><?php echo $libelle ?></label>
                         <input type="text" id="idFrais" 
@@ -44,6 +46,7 @@
                                class="form-control">
                     </div>
                     <?php
+                    if($uc== 'validerFrais' && $action=='voirEtatFrais'){ $_SESSION['montantFicheFrais']+=$quantite;}
                 }
                 ?>
                 <button class="btn btn-success" type="submit"><?php if($_SESSION["role"] == "Visiteur"){echo 'Ajouter';}

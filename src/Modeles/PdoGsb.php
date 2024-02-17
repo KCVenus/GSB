@@ -81,7 +81,13 @@ class PdoGsb
         }
         return self::$instance;
     }
-
+    
+    /**
+     * 
+     * @param type $login
+     * @param type $role
+     * @return array|bool
+     */
      public function getInfosUtilisateur($login, $role): array|bool
     {
         $req= 'SELECT id AS id, nom AS nom, prenom AS prenom, email AS email '
@@ -96,22 +102,37 @@ class PdoGsb
         return $requetePrepare->fetch(PDO::FETCH_ASSOC);
     }
     
-   
-//     public function getInfosUtilisateurById($id, $role): array|bool
-//    {
-//        $req= 'SELECT id AS id, nom AS nom, prenom AS prenom'
-//                . ' FROM utilisateur' 
-//                . ' WHERE id = :unid AND role = :role ';
-//        
-//        $requetePrepare = $this->connexion->prepare($req);
-//        $requetePrepare->bindParam(':unid', $id, PDO::PARAM_STR);
-//        $requetePrepare->bindParam(':role', $role, PDO::PARAM_INT);
-//
-//        $requetePrepare->execute();
-//        return $requetePrepare->fetch(PDO::FETCH_ASSOC);
-//    }
+    /**
+     * 
+     * @param int $idFrais
+     */
+    public function refuserFraisHorsForfait(int $idFrais) {
+        $requetePrepare = $this->connexion->prepare(
+          'UPDATE lignefraishorsforfait '
+          . 'SET lignefraishorsforfait.libelle= LEFT(CONCAT("REFUSE"," ",libelle),100) '
+          . 'WHERE lignefraishorsforfait.id = :unIdFrais'
+        );
+        $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_INT);
+        $requetePrepare->execute();
+    }
+      
+    /**
+     * 
+     * @param type $idVisiteur
+     */
+    public function getFraisKmByVisiteur($idVisiteur){
+         $requetePrepare = $this->connexion->prepare(
+                 'SELECT prix from fraisKm '
+                 . 'inner join utilisateur on fraisKm.id=utilisateur.idVehicule '
+                 . 'where utilisateur.id=:unId '
+        );
+        $requetePrepare->bindParam(':unId', $idVisiteur, PDO::PARAM_STR);
+       
+        $requetePrepare->execute();
+
+        return $requetePrepare->fetch(PDO::FETCH_ASSOC);
     
-    
+    }
     /**
      * Methode qui retourne le statut d'un utilisateur: 1 pour visiteur et 2 pour comptable.
      * @param type $login
@@ -163,7 +184,6 @@ class PdoGsb
     
     }
 
-    
     public function setCodeA2f($id, $code) {
     $requetePrepare = $this->connexion->prepare(
         'UPDATE utilisateur '
@@ -612,6 +632,27 @@ class PdoGsb
             . 'AND fichefrais.mois = :unMois'
         );
         $requetePrepare->bindParam(':unEtat', $etat, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+    }
+    
+    /**
+     * 
+     * @param type $idVisiteur
+     * @param type $mois
+     * @param type $montantValide
+     * @return void
+     */
+    public function majMontantValideFicheFrais($idVisiteur, $mois, $montantValide): void
+    {
+        $requetePrepare = $this->connexion->prepare(
+            'UPDATE fichefrais '
+            . 'SET montantvalide = :unMontant, datemodif = now() '
+            . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
+            . 'AND fichefrais.mois = :unMois'
+        );
+        $requetePrepare->bindParam(':unMontant', $montantValide, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();

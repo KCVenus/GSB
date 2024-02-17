@@ -48,7 +48,7 @@ use Outils\Utilitaires;
                     if ($_SESSION['role']=="Comptable"){
                         echo 
                         '<td> <input name="id" value=' . $id .' hidden > </input>'
-                                .' <input type="date" name="lesDates[' . $id. ']" value="'. Utilitaires::dateFrancaisVersAnglais($date).'"></input></td>'. 
+                            .' <input type="date" name="lesDates[' . $id. ']" value="'. Utilitaires::dateFrancaisVersAnglais($date).'"></input></td>'. 
                             '<td><input name="lesLibelles[' . $id. ']" value="'. $libelle .'"></input></td>' .
                             '<td><input name="lesMontants[' . $id. ']" value="'. $montant .'"></input></td>';
                     }
@@ -62,9 +62,9 @@ use Outils\Utilitaires;
             <td>
                 <?php 
                     if ($_SESSION['role']=="Comptable"){
-                        echo '<button class="btn btn-success" type="submit" action="index.php?uc=validerFrais&action=majFraisHorsForfait">Corriger</button>' 
+                        echo '<button class="btn btn-success" type="submit" value="corriger" name="action">Corriger</button>' 
                         . '<button class="btn btn-warning" type="reset">Réinitialiser</button>'
-                        . '<button class="btn btn-danger">Refuser</button>';
+                        . '<button class="btn btn-danger" type="submit" name="action" value="refuser" >Refuser</button>';
                     }
                     else{
                         echo '<a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=' . $id 
@@ -93,6 +93,10 @@ use Outils\Utilitaires;
         .$nbJustificatifs.'></input></div>';
     }
 ?>
+
+<form method="post" action="index.php?uc=validerFrais&action=validerFicheFrais" role="form">
+    <button type="submit" name="validerFicheFrais" value="valider" class="btn btn-danger">Valider</button>
+</form>
 
 
 <?php if($_SESSION['role']=='Visiteur'){
