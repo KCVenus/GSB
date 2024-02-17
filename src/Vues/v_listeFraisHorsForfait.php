@@ -55,10 +55,19 @@
                 ?>
 
                 <td>
-                    <a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=<?php echo $id ?>" 
-                       onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');">
-                      <?php echo $actionBtnsHF ?> 
-                    </a>
+
+             <?php 
+                    if ($_SESSION['role']=="Comptable"){
+                        echo '<button class="btn btn-success" type="submit">Corriger</button>' 
+                        . '<button class="btn btn-danger" type="reset">Réinitialiser</button>';
+                    }
+                    else{
+                        echo '<a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=' . $id 
+                        .'"  onclick="return confirm(' . "'" . 'Voulez-vous vraiment supprimer ce frais?' . "')" 
+                        .' ;" >supprimer</a>';
+                    }
+                ?> 
+
                 </td>
             </tr>
                 <?php
