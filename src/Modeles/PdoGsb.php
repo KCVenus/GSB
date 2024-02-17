@@ -96,24 +96,24 @@ class PdoGsb
         return $requetePrepare->fetch(PDO::FETCH_ASSOC);
     }
     
-    
-     public function getInfosUtilisateurById($id, $role): array|bool
-    {
-        $req= 'SELECT id AS id, nom AS nom, prenom AS prenom'
-                . ' FROM utilisateur' 
-                . ' WHERE id = :unid AND role = :role ';
-        
-        $requetePrepare = $this->connexion->prepare($req);
-        $requetePrepare->bindParam(':unid', $id, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':role', $role, PDO::PARAM_INT);
-
-        $requetePrepare->execute();
-        return $requetePrepare->fetch(PDO::FETCH_ASSOC);
-    }
+   
+//     public function getInfosUtilisateurById($id, $role): array|bool
+//    {
+//        $req= 'SELECT id AS id, nom AS nom, prenom AS prenom'
+//                . ' FROM utilisateur' 
+//                . ' WHERE id = :unid AND role = :role ';
+//        
+//        $requetePrepare = $this->connexion->prepare($req);
+//        $requetePrepare->bindParam(':unid', $id, PDO::PARAM_STR);
+//        $requetePrepare->bindParam(':role', $role, PDO::PARAM_INT);
+//
+//        $requetePrepare->execute();
+//        return $requetePrepare->fetch(PDO::FETCH_ASSOC);
+//    }
     
     
     /**
-     * Methode qui retourne le statut d'un utilisateur: 1 pour visiteur et 2 pour comptable;
+     * Methode qui retourne le statut d'un utilisateur: 1 pour visiteur et 2 pour comptable.
      * @param type $login
      * @param type $mdp
      * @return type
@@ -129,6 +129,11 @@ class PdoGsb
         return $requetePrepare->fetch(PDO::FETCH_COLUMN) ;
     }
     
+    /**
+     * Fonction qui retourne le mot de passe d'un utilisateur en fonction de son login passé en paramètre.
+     * @param type $login
+     * @return type
+     */
      public function getMdpUtilisateur($login) {
     $requetePrepare = $this->connexion->prepare(
         'SELECT mdp '
@@ -181,7 +186,10 @@ class PdoGsb
         return $requetePrepare->fetch()['codea2f'];
     }
     
-
+    /**
+     * Fonction qui retourne le nom, prenom, id de tous les visiteurs médicaux.
+     * @return type
+     */
     public function getNomsVisiteurs(){
           $requetePrepare = $this->connexion->prepare(
             'SELECT DISTINCT nom, prenom, id '

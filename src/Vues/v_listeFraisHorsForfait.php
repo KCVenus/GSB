@@ -17,6 +17,8 @@
  */
 
 ?>
+
+
 <hr>
 <div class="row">
     <div class="panel panel-info">
@@ -36,19 +38,29 @@
                 $libelle = htmlspecialchars($unFraisHorsForfait['libelle']);
                 $date = $unFraisHorsForfait['date'];
                 $montant = $unFraisHorsForfait['montant'];
-                $id = $unFraisHorsForfait['id']; ?>           
-                <tr>
-                    <td> <?php echo $date ?></td>
-                    <td> <?php echo $libelle ?></td>
-                    <td><?php echo $montant ?></td>
-                    <td>
-                        <a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=<?php echo $id ?>" 
-                           onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');">
-                            <button class="btn btn-success" type="submit">Corriger</button>
-                            <button class="btn btn-danger" type="reset">Réinitialiser</button>
-                        </a>
-                    </td>
-                </tr>
+                $id = $unFraisHorsForfait['id']; 
+            ?>           
+            <tr>
+                <?php 
+                    if ($_SESSION['role']=="Comptable"){
+                        echo '<td> <input value="'. $date .'"></input></td>'. 
+                            '<td><input value="'. $libelle .'"></input></td>' .
+                            '<td><input value="'. $montant .'"></input></td>';
+                    }
+                    else{
+                        echo '<td>'.$date .'</td>'.
+                            '<td>'.$libelle.'</td>' .
+                            '<td>'.$montant.'</td>';
+                    }
+                ?>
+
+                <td>
+                    <a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=<?php echo $id ?>" 
+                       onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');">
+                      <?php echo $actionBtnsHF ?> 
+                    </a>
+                </td>
+            </tr>
                 <?php
             }
             ?>
@@ -56,6 +68,15 @@
         </table>
     </div>
 </div>
+
+<?php 
+    if($_SESSION['role']=='Comptable'){
+        echo '<div class="row">Nombre de justificatifs : <input class="nb-justificatifs" value='
+        .$nbJustificatifs.'></input></div>';
+    }
+?>
+
+
 <?php if($_SESSION['role']=='Visiteur'){
     echo  '<div class="row">
     <h3>Nouvel élément hors forfait</h3>
@@ -82,4 +103,5 @@
             <button class="btn btn-danger" type="reset">Effacer</button>
         </form>
     </div>
-</div>' ;} ?>
+</div>' 
+    ;} ?>

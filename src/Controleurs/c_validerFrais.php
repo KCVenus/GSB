@@ -55,6 +55,7 @@ switch ($action) {
             $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
             $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
             $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
+            $actionBtnsHF = ($role=='Comptable') ?'<button class="btn btn-success" type="submit">Corriger</button><button class="btn btn-danger" type="reset">Réinitialiser</button>' : 'supprimer';
             require PATH_VIEWS . 'v_listeFraisForfait.php';
             require PATH_VIEWS . 'v_listeFraisHorsForfait.php';
             
@@ -74,7 +75,9 @@ switch ($action) {
             $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
             $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
             $lesVisiteurs = $pdo->getNomsVisiteurs();
-            $lesMois = $pdo->getLesMoisCloturesDisponibles();          
+            $lesMois = $pdo->getLesMoisCloturesDisponibles();  
+            $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteur, $leMois);
+            $actionBtnsHF= ($role=='Comptable') ?'<button class="btn btn-success" type="submit">Corriger</button><button class="btn btn-danger" type="reset">Réinitialiser</button>' : 'supprimer';
             include PATH_VIEWS . 'v_listeMoisComptable.php';
             require PATH_VIEWS . 'v_listeFraisForfait.php';
             require PATH_VIEWS . 'v_listeFraisHorsForfait.php';
