@@ -101,5 +101,24 @@ switch ($action) {
             include PATH_VIEWS . 'v_erreurs.php';
         }
     break;
+    
+    case 'reporter':
+    $moisSuivant = Utilitaires::getMoisSuivant($leMois);
+    $idVisiteur = $_SESSION['idVisiteur'];
+    $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_NUMBER_INT);
+    $leMois = filter_input(INPUT_GET, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $montant = filter_input(INPUT_GET, 'montant', FILTER_SANITIZE_NUMBER_INT);
+    $mois = filter_input(INPUT_GET, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    if ($pdo->estPremierFraisMois($idVisiteur, $moisSuivant)) {
+      $pdo->creeNouvellesLignesFrais($idVisiteur, $moisSuivant);
+    }
+    $moisReporter = $pdo->reporterFraisHF($idFrais, $mois);
+    ?>
+    <div class="alert alert-warning" role="alert">
+      <p>Le frais hors forfait sélectionné à été reporté au mois suivant. <a href = "index.php?uc=validerFrais&action=selectionnerVisiteur">Cliquez ici</a>
+        pour revenir à la selection.</p>
+    </div>
+    <?php
+    break;
            
 }

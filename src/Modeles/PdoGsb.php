@@ -616,4 +616,19 @@ class PdoGsb
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
+    
+    
+    
+     public function reporterFraisHF(string $idFrais, string $moisPara) {
+        $mois = Utilitaires::getMoisSuivant($moisPara);
+        $requetePrepare = $this->connexion->prepare(
+        'UPDATE lignefraishorsforfait '
+        . 'SET lignefraishorsforfait.mois= :unMois '
+        . 'WHERE lignefraishorsforfait.id = :unIdFrais'
+        );
+        $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        return $mois;
+    }
 }
