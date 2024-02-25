@@ -65,8 +65,8 @@ switch ($action) {
     case 'majFraisHorsForfait':
 
         $idFrais = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $actionForm=filter_input(INPUT_POST, 'action', FILTER_DEFAULT);
         
+        //on récupère un attribut des boutons du formulaire qui va identifier sur quel bouton on a cliqué
         $corriger = isset($_POST['action']) && filter_input(INPUT_POST, 'action', FILTER_DEFAULT)=="corriger";
         $refuser = isset($_POST['action']) && filter_input(INPUT_POST, 'action', FILTER_DEFAULT)=="refuser";
         
@@ -80,14 +80,14 @@ switch ($action) {
         $leMois = $_SESSION['leMois'];
         
         $prixKm=$pdo->getFraisKmByVisiteur($idVisiteur);
-        
+       
      if($corriger){
        $pdo->majFraisHorsForfait($idVisiteur, $leMois, $libelle, $date, $montant, $idFrais);
      }
      else if($refuser) {
-         //ajouter refuse au libelle
          $pdo->refuserFraisHorsForfait($idFrais);
      }
+     //rajouter else if reporter ?
        
        $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
        $lesVisiteurs = $pdo->getNomsVisiteurs();
@@ -149,7 +149,7 @@ switch ($action) {
         $montantValide = $_SESSION['montantFicheFrais'];
         $pdo->majMontantValideFicheFrais($idVisiteur,$leMois,$montantValide);
         //mettre à jour l'état à 'VA':
-         $idEtat='VA';
+        $idEtat='VA';
         $pdo->majEtatFicheFrais($idVisiteur, $leMois, $idEtat);        
     
     break;

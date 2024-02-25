@@ -47,8 +47,8 @@ use Outils\Utilitaires;
                 <?php 
                     if ($_SESSION['role']=="Comptable"){
                         echo 
-                        '<td> <input name="id" value=' . $id .' hidden > </input>'
-                            .' <input type="date" name="lesDates[' . $id. ']" value="'. Utilitaires::dateFrancaisVersAnglais($date).'"></input></td>'. 
+                            '<td> ' .
+                            ' <input type="date" name="lesDates[' . $id. ']" value="'. Utilitaires::dateFrancaisVersAnglais($date).'"></input></td>'. 
                             '<td><input name="lesLibelles[' . $id. ']" value="'. $libelle .'"></input></td>' .
                             '<td><input name="lesMontants[' . $id. ']" value="'. $montant .'"></input></td>';
                     }
