@@ -70,49 +70,75 @@ switch ($action) {
         $corriger = isset($_POST['action']) && filter_input(INPUT_POST, 'action', FILTER_DEFAULT)=="corriger";
         $refuser = isset($_POST['action']) && filter_input(INPUT_POST, 'action', FILTER_DEFAULT)=="refuser";
         
-        $lesLibelles = filter_input(INPUT_POST, 'lesLibelles', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
-        $lesDates = filter_input(INPUT_POST, 'lesDates', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
-        $lesMontants = filter_input(INPUT_POST, 'lesMontants', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
-        $libelle = $lesLibelles[$idFrais];
-        $date = $lesDates[$idFrais];
-        $montant = $lesMontants[$idFrais];
+//        $lesLibelles = filter_input(INPUT_POST, 'lesLibelles', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+//        $lesDates = filter_input(INPUT_POST, 'lesDates', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+//        $lesMontants = filter_input(INPUT_POST, 'lesMontants', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+//        $libelle = $lesLibelles[$idFrais];
+//        $date = $lesDates[$idFrais];
+//        $montant = $lesMontants[$idFrais];
         $idVisiteur = $_SESSION['idVisiteur'];
         $leMois = $_SESSION['leMois'];
         
         $prixKm=$pdo->getFraisKmByVisiteur($idVisiteur);
+         
        
      if($corriger){
        $pdo->majFraisHorsForfait($idVisiteur, $leMois, $libelle, $date, $montant, $idFrais);
      }
+     
      else if($refuser) {
-         $pdo->refuserFraisHorsForfait($idFrais);
+
+      echo ' 
+     <div class="alert alert-warning" role="alert">
+      <p><h4>Voulez vous refuser ou reporter le frais?<br></h4>
+      <a href="index.php?uc=validerFrais&action=refuser&idFrais=' .$idFrais .'">refuser</a>  ou '
+              . '<a href="index.php?uc=validerFrais&action=reporter&idFrais=' .$idFrais .'">reporter</a>
+     
+    </div> ';
+
+       //  $pdo->refuserFraisHorsForfait($idFrais);
      }
      //rajouter else if reporter ?
        
-       $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
-       $lesVisiteurs = $pdo->getNomsVisiteurs();
-        $lesMois = $pdo->getLesMoisCloturesDisponibles();
-        include PATH_VIEWS . 'v_listeMoisComptable.php';
-        
-        $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur, $leMois);
-        if(!$lesInfosFicheFrais){
-            Utilitaires::ajouterErreur("Aucune fiche de frais n'est à valider pour ce visiteur. Veuillez-en choisir un autre");
-            include PATH_VIEWS . 'v_erreurs.php';
-        }
-        else{
-            $numAnnee = substr($leMois, 0, 4);
-            $numMois = substr($leMois, 4, 2);
-            $libEtat = $lesInfosFicheFrais['libEtat'];
-            $montantValide = $lesInfosFicheFrais['montantValide'];
-            $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
-            $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
-            $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
-            $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
-            require PATH_VIEWS . 'v_listeFraisForfait.php';
-            require PATH_VIEWS . 'v_listeFraisHorsForfait.php';    
-        }
+//       $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
+//       $lesVisiteurs = $pdo->getNomsVisiteurs();
+//        $lesMois = $pdo->getLesMoisCloturesDisponibles();
+//        include PATH_VIEWS . 'v_listeMoisComptable.php';
+//        
+//        $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur, $leMois);
+//        if(!$lesInfosFicheFrais){
+//            Utilitaires::ajouterErreur("Aucune fiche de frais n'est à valider pour ce visiteur. Veuillez-en choisir un autre");
+//            include PATH_VIEWS . 'v_erreurs.php';
+//        }
+//        else{
+//            $numAnnee = substr($leMois, 0, 4);
+//            $numMois = substr($leMois, 4, 2);
+//            $libEtat = $lesInfosFicheFrais['libEtat'];
+//            $montantValide = $lesInfosFicheFrais['montantValide'];
+//            $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
+//            $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
+//            $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
+//            $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
+//            require PATH_VIEWS . 'v_listeFraisForfait.php';
+//            require PATH_VIEWS . 'v_listeFraisHorsForfait.php';    
+//        }
        
+    break;
+    
+    
+    case 'refuser':
+   
+//    $idVisiteur = $_SESSION['idVisiteur'];
+    $idFrais = intval(filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_NUMBER_INT));
+//    $leMois = filter_input(INPUT_GET, 'leMois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+    $pdo->refuserFraisHorsForfait($idFrais);
 
+    echo '<div class="alert alert-warning" role="alert">
+      <p>Le frais hors forfait sélectionné à été refusé. <a href = "index.php?uc=validerFrais&action=voirEtatFrais">Cliquez ici</a>
+        pour revenir à la selection.</p>
+    </div>';
+   
     break;
         
     case 'validerMajFraisForfait':
@@ -139,7 +165,31 @@ switch ($action) {
             include PATH_VIEWS . 'v_erreurs.php';
         }
     break;
+
+    case 'reporter':
+        
+    $moisSuivant = Utilitaires::getMoisSuivant($leMois);
+    $idVisiteur = $_SESSION['idVisiteur'];
+    $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_NUMBER_INT);
+    $leMois = filter_input(INPUT_GET, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $montant = filter_input(INPUT_GET, 'montant', FILTER_SANITIZE_NUMBER_INT);
+    $mois = filter_input(INPUT_GET, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
+    if ($pdo->estPremierFraisMois($idVisiteur, $moisSuivant)) {
+      $pdo->creeNouvellesLignesFrais($idVisiteur, $moisSuivant);
+    }
+    $moisReporter = $pdo->reporterFraisHF($idFrais, $mois);
+
+    echo '<div class="alert alert-warning" role="alert">
+      <p>Le frais hors forfait sélectionné à été reporté au mois suivant. <a href = "index.php?uc=validerFrais&action=voirEtatFrais">Cliquez ici</a>
+        pour revenir à la selection.</p>
+    </div> ';
+ 
+	
+    break;
+    
+
+
     case 'validerFicheFrais':
         //recup FicheFrais
         $idVisiteur = $_SESSION['idVisiteur'];

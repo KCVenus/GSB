@@ -62,9 +62,10 @@ use Outils\Utilitaires;
             <td>
                 <?php 
                     if ($_SESSION['role']=="Comptable"){
+                       
                         echo '<button class="btn btn-success" type="submit" value="corriger" name="action">Corriger</button>' 
                         . '<button class="btn btn-warning" type="reset">Réinitialiser</button>'
-                        . '<button class="btn btn-danger" type="submit" name="action" value="refuser" >Refuser</button>';
+                        . ' <a href="index.php?uc=validerFrais&action=majFraisHorsForfait&idFrais='. $id .'" > <button class="btn btn-danger btn-refuser" name="action" value="refuser" >Refuser ou reporter </button> </a>';
                     }
                     else{
                         echo '<a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=' . $id 
@@ -127,4 +128,5 @@ use Outils\Utilitaires;
     </div>
 </div>' 
     ;} ?>
+
 
