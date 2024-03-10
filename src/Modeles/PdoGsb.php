@@ -652,7 +652,7 @@ class PdoGsb
         $requetePrepare->execute();
         return $mois;
 
-
+     }
     /**
      * 
      * @param type $idVisiteur

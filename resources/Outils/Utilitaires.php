@@ -187,6 +187,21 @@ abstract class Utilitaires
         }
         return $dateOK;
     }
+      
+     public static function getMoisSuivant(string $mois) {
+        $numAnnee = substr($mois, 0, 4);
+        $numMois = substr($mois, 4, 2);
+        if ($numMois == '12') {
+          $numMois = '01';
+          $numAnnee++;
+        } else {
+          $numMois++;
+        }
+        if (strlen($numMois) == 1) {
+          $numMois = '0' . $numMois;
+        }
+        return $numAnnee . $numMois;
+    }
 
     /**
      * Vérifie que le tableau de frais ne contient que des valeurs numériques
