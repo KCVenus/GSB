@@ -63,9 +63,10 @@ use Outils\Utilitaires;
                 <?php 
                     if ($_SESSION['role']=="Comptable"){
                         echo '<button class="btn btn-success" type="submit" value="corriger" name="action">Corriger</button>' 
-                        . '<button class="btn btn-warning" type="reset">Réinitialiser</button>'
-
-                        . ' <a href="index.php?uc=validerFrais&action=reporterOuRefuser&idFrais='. $id .'" > <button class="btn btn-danger btn-refuser" name="action" value="refuser" >Refuser ou reporter </button> </a>';
+                        . '<button class="btn btn-warning" type="reset">Réinitialiser</button>  '
+                        .'/form>'
+                                
+                        . ' <a href="index.php?uc=validerFrais&action=refuserOuReporter&idFrais='. $id .'" > <button class="btn btn-danger" >Refuser ou reporter </button> </a>';
 
                     }
                     else{
@@ -80,7 +81,7 @@ use Outils\Utilitaires;
 
             </tr>
             
-            </form>
+           
                 <?php
             }
             ?>

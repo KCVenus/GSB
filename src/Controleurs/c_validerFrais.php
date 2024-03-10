@@ -74,13 +74,12 @@ switch ($action) {
         $idVisiteur = $_SESSION['idVisiteur'];
         $leMois = $_SESSION['leMois'];
  
-//        $prixKm=$pdo->getFraisKmByVisiteur($idVisiteur);
-
+        $prixKm=$pdo->getFraisKmByVisiteur($idVisiteur);
 
         $pdo->majFraisHorsForfait($idVisiteur, $leMois, $libelle, $date, $montant, $idFrais);
         
-         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
-       $lesVisiteurs = $pdo->getNomsVisiteurs();
+        $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
+        $lesVisiteurs = $pdo->getNomsVisiteurs();
         $lesMois = $pdo->getLesMoisCloturesDisponibles();
         include PATH_VIEWS . 'v_listeMoisComptable.php';
         
@@ -106,19 +105,19 @@ switch ($action) {
     break;
     
     case 'refuserOuReporter':
-        $idFrais = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        
+        $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $idVisiteur = $_SESSION['idVisiteur'];
         $leMois = $_SESSION['leMois'];
-        $montant=$_SESSION['montant'];
+        $montant=$_SESSION['montantFicheFrais'];
         
          echo ' 
         <div class="alert alert-warning" role="alert">
          <p><h4>Voulez vous refuser ou reporter le frais?<br></h4>
          <a href="index.php?uc=validerFrais&action=refuser&idFrais=' .$idFrais .'">refuser</a>  ou '
-                 . '<a href="index.php?uc=validerFrais&action=reporter&idFrais=' . $idFrais 
-                .'&montant=' .$montant .'&mois=' .$leMois .
-                 '">reporter</a>
-
+        . '<a href="index.php?uc=validerFrais&action=reporter&idFrais=' . $idFrais 
+        .'&montant=' .$montant .'&mois=' .$leMois .
+        '">reporter</a>
        </div> ';
         
         
@@ -128,9 +127,14 @@ switch ($action) {
     
     case 'refuser':
    
-    $idFrais = intval(filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_NUMBER_INT));
-    
-    $pdo->refuserFraisHorsForfait($idFrais);
+        $idFrais = intval(filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_NUMBER_INT));
+
+        $pdo->refuserFraisHorsForfait($idFrais);
+        
+        echo '<div class="alert alert-warning" role="alert">
+              <p> Le frais hors forfait sélectionné à été refusé. <a href = "index.php?uc=validerFrais&action=voirEtatFrais">Cliquez ici</a>
+                pour revenir à la selection.</p>
+            </div> ';
 
 
     break;
@@ -162,27 +166,27 @@ switch ($action) {
     
 
     case 'reporter':
-        
-    $idVisiteur = $_SESSION['idVisiteur'];
-    $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_NUMBER_INT);
-    $leMois = filter_input(INPUT_GET, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-//    $montant = filter_input(INPUT_GET, 'montant', FILTER_SANITIZE_NUMBER_INT);
-//    $mois = filter_input(INPUT_GET, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    
-    $moisSuivant = Utilitaires::getMoisSuivant($leMois);
-    
-    if ($pdo->estPremierFraisMois($idVisiteur, $moisSuivant)) {
-      $pdo->creeNouvellesLignesFrais($idVisiteur, $moisSuivant);
-    }
-    $moisReporter = $pdo->reporterFraisHF($idFrais, $leMois);
 
-    echo '<div class="alert alert-warning" role="alert">
-      <p> Le frais hors forfait sélectionné à été reporté au mois suivant. <a href = "index.php?uc=validerFrais&action=voirEtatFrais">Cliquez ici</a>
-        pour revenir à la selection.</p>
-    </div> ';
+        $idVisiteur = $_SESSION['idVisiteur'];
+        $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_NUMBER_INT);
+        $leMois = filter_input(INPUT_GET, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        //    $montant = filter_input(INPUT_GET, 'montant', FILTER_SANITIZE_NUMBER_INT);
+        //    $mois = filter_input(INPUT_GET, 'mois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+        $moisSuivant = Utilitaires::getMoisSuivant($leMois);
+
+        if ($pdo->estPremierFraisMois($idVisiteur, $moisSuivant)) {
+          $pdo->creeNouvellesLignesFrais($idVisiteur, $moisSuivant);
+        }
+        $moisReporter = $pdo->reporterFraisHF($idFrais, $leMois);
+
+            echo '<div class="alert alert-warning" role="alert">
+              <p> Le frais hors forfait sélectionné à été reporté au mois suivant. <a href = "index.php?uc=validerFrais&action=voirEtatFrais">Cliquez ici</a>
+                pour revenir à la selection.</p>
+            </div> ';
 
 	
-	break;
+    break;
 
     case 'validerFicheFrais':
         //recup FicheFrais
