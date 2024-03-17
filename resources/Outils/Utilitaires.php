@@ -140,7 +140,7 @@ abstract class Utilitaires
      *
      * @return Boolean vrai ou faux
      */
-    public static function cestTableauEntiers($tabEntiers): bool
+    public static function estTableauEntiers($tabEntiers): bool
     {
         $boolReturn = true;
         foreach ($tabEntiers as $unEntier) {
@@ -228,7 +228,7 @@ abstract class Utilitaires
      */
     public static function lesQteFraisValides($lesFrais): bool
     {
-        return self::cestTableauEntiers($lesFrais);
+        return self::estTableauEntiers($lesFrais);
     }
     
     public static function lesQteFraisValidesNombre($lesFrais): bool
