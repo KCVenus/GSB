@@ -146,7 +146,8 @@ switch ($action) {
         //récupérer le mois à afficher et l'id du visiteur
         $idVisiteur = $_SESSION['idVisiteur'] ;
         $leMois = $_SESSION['leMois'];
-        if (Utilitaires::lesQteFraisValides($lesFrais)) {
+        $prixKm=$pdo->getFraisKmByVisiteur($idVisiteur);
+        if (Utilitaires::lesQteFraisValidesNombre($lesFrais)) {
             //modifier les frais:
             $pdo->majFraisForfait($idVisiteur, $leMois, $lesFrais);
             
