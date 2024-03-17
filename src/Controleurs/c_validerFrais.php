@@ -90,6 +90,8 @@ switch ($action) {
         include PATH_VIEWS . 'v_listeMoisComptable.php';
         
         $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur, $leMois);
+     
+        
         if(!$lesInfosFicheFrais){
             Utilitaires::ajouterErreur("Aucune fiche de frais n'est à valider pour ce visiteur. Veuillez-en choisir un autre");
             include PATH_VIEWS . 'v_erreurs.php';
@@ -168,6 +170,9 @@ switch ($action) {
             include PATH_VIEWS . 'v_listeMoisComptable.php';
             require PATH_VIEWS . 'v_listeFraisForfait.php';
             require PATH_VIEWS . 'v_listeFraisHorsForfait.php';
+            ?>
+            <script>alert("<?php echo htmlspecialchars('Votre fiche de frais a bien été corrigée ! ', ENT_QUOTES); ?>")</script>
+            <?php
         } else {
             Utilitaires::ajouterErreur('Les valeurs des frais doivent être numériques');
             include PATH_VIEWS . 'v_erreurs.php';
