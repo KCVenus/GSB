@@ -22,8 +22,15 @@ $idUtilisateur = $_SESSION['idUtilisateur'];
 $role = $_SESSION['role'];
 
 switch ($action) {
-    case 'selectionnerMoisComptable':
-        $lesMois = $pdo->getLesMoisCloturesDisponibles();
+    case 'selectionnerVisiteur':
+        $lesVisiteurs = $pdo->getNomsVisiteurs();
+        include PATH_VIEWS . 'v_listeVisiteurs.php';
+        
+    break;
+
+    case 'selectionnerMois':
+        $idVisiteur = filter_input(INPUT_POST, 'lstVisiteurs', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $lesMois = $pdo->getLesMoisCloturesDisponibles($idVisiteur);
         $lesVisiteurs = $pdo->getNomsVisiteurs();
         include PATH_VIEWS . 'v_listeMoisComptable.php';
         
@@ -40,7 +47,7 @@ switch ($action) {
         //menu déroulant mois:
         $leMois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $_SESSION['leMois'] = $leMois;
-        $lesMois = $pdo->getLesMoisCloturesDisponibles();
+        $lesMois = $pdo->getLesMoisCloturesDisponibles($idVisiteur);
         include PATH_VIEWS . 'v_listeMoisComptable.php';
 
         $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur, $leMois);
@@ -79,7 +86,7 @@ switch ($action) {
         
         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
         $lesVisiteurs = $pdo->getNomsVisiteurs();
-        $lesMois = $pdo->getLesMoisCloturesDisponibles();
+        $lesMois = $pdo->getLesMoisCloturesDisponibles($idVisiteur);
         include PATH_VIEWS . 'v_listeMoisComptable.php';
         
         $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur, $leMois);
@@ -155,7 +162,7 @@ switch ($action) {
             $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
             $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
             $lesVisiteurs = $pdo->getNomsVisiteurs();
-            $lesMois = $pdo->getLesMoisCloturesDisponibles();  
+            $lesMois = $pdo->getLesMoisCloturesDisponibles($idVisiteur);  
             $nbJustificatifs = $pdo->getNbjustificatifs($idVisiteur, $leMois);
             $actionBtnsHF= ($role=='Comptable') ?'<button class="btn btn-success" type="submit">Corriger</button><button class="btn btn-danger" type="reset">Réinitialiser</button>' : 'supprimer';
             include PATH_VIEWS . 'v_listeMoisComptable.php';

@@ -68,7 +68,7 @@ elseif($_SESSION["role"] == "Comptable"){
                             <li <?php if ($uc == 'gererFrais') { ?>class="active"<?php } ?>>
                                 <a 
                                    <?php if($_SESSION["role"] == "Visiteur"){echo 'href="index.php?uc=gererFrais&action=saisirFrais"';}
-                                  elseif($_SESSION["role"] == "Comptable"){echo 'href="index.php?uc=validerFrais&action=selectionnerMoisComptable"';} 
+                                  elseif($_SESSION["role"] == "Comptable"){echo 'href="index.php?uc=validerFrais&action=selectionnerVisiteur"';} 
                                     ?>
                                     >
                                     <span class="glyphicon glyphicon-<?php echo $icon ?>"></span>

@@ -561,13 +561,14 @@ class PdoGsb
         return $lesMois;
     }
     
-    public function getLesMoisCloturesDisponibles(): array
+    public function getLesMoisCloturesDisponibles($idVisiteur): array
     {
         $requetePrepare = $this->connexion->prepare(
             'SELECT distinct fichefrais.mois AS mois FROM fichefrais '
-            . " WHERE fichefrais.idetat='CL'"
+            . " WHERE fichefrais.idetat='CL' AND idvisiteur =:unIdVisiteur "
             . 'ORDER BY fichefrais.mois desc'
         );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
         $requetePrepare->execute();
         $lesMois = array();
         while ($laLigne = $requetePrepare->fetch()) {
