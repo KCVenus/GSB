@@ -73,7 +73,6 @@ switch ($action) {
         $montant = $lesMontants[$idFrais];
         $idVisiteur = $_SESSION['idVisiteur'];
         $leMois = $_SESSION['leMois'];
- 
         $prixKm=$pdo->getFraisKmByVisiteur($idVisiteur);
 
         $pdo->majFraisHorsForfait($idVisiteur, $leMois, $libelle, $date, $montant, $idFrais);
@@ -98,7 +97,10 @@ switch ($action) {
             $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
             $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
             require PATH_VIEWS . 'v_listeFraisForfait.php';
-            require PATH_VIEWS . 'v_listeFraisHorsForfait.php';    
+            require PATH_VIEWS . 'v_listeFraisHorsForfait.php';
+            ?>
+            <script>alert("<?php echo htmlspecialchars('Votre fiche de frais a bien été corrigée ! ', ENT_QUOTES); ?>")</script>
+            <?php
         }
        
         

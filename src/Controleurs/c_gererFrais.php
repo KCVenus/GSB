@@ -32,7 +32,7 @@ switch ($action) {
  
     case 'validerMajFraisForfait':
         $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
-        if (Utilitaires::lesQteFraisValides($lesFrais)) {
+        if (Utilitaires::lesQteFraisValidesNombre($lesFrais)) {
             $pdo->majFraisForfait($idVisiteur, $mois, $lesFrais);
         } else {
             Utilitaires::ajouterErreur('Les valeurs des frais doivent être numériques');

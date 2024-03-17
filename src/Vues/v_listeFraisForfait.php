@@ -35,7 +35,7 @@
                     $idFrais = $unFrais['idfrais'];
                     $libelle = htmlspecialchars($unFrais['libelle']);
                     
-                    $quantite = $idFrais=='KM' ? $unFrais['quantite']*$prixKm['prix'] : $unFrais['quantite'] ; ?>
+                    $quantite = $idFrais == 'KM' ? $unFrais['quantite']*$prixKm['prix'] : $unFrais['quantite'] ; ?>
                 
                     <div class="form-group">
                         <label for="idFrais"><?php echo $libelle ?></label>

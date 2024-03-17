@@ -128,7 +128,11 @@ abstract class Utilitaires
     {
         return preg_match('/[^0-9]/', $valeur) == 0;
     }
-
+    
+    public static function estNombrePositif($valeur): bool
+    {
+        return  (is_numeric($valeur) &&  floatval($valeur)>0);
+    }
     /**
      * Indique si un tableau de valeurs est constitué d'entiers positifs ou nuls
      *
@@ -136,7 +140,7 @@ abstract class Utilitaires
      *
      * @return Boolean vrai ou faux
      */
-    public static function estTableauEntiers($tabEntiers): bool
+    public static function cestTableauEntiers($tabEntiers): bool
     {
         $boolReturn = true;
         foreach ($tabEntiers as $unEntier) {
@@ -146,7 +150,18 @@ abstract class Utilitaires
         }
         return $boolReturn;
     }
-
+    
+    public static function cestTableauNombres($tabNombres): bool
+    {
+        $boolReturn = true;
+        foreach ($tabNombres as $unNombre){
+            if(!self::estNombrePositif($unNombre)) {
+                $boolReturn = false;
+            }
+        }
+        return $boolReturn;
+    }
+    
     /**
      * Vérifie si une date est inférieure d'un an à la date actuelle
      *
@@ -213,7 +228,12 @@ abstract class Utilitaires
      */
     public static function lesQteFraisValides($lesFrais): bool
     {
-        return self::estTableauEntiers($lesFrais);
+        return self::cestTableauEntiers($lesFrais);
+    }
+    
+    public static function lesQteFraisValidesNombre($lesFrais): bool
+    {
+        return self::cestTableauNombres($lesFrais);
     }
 
     /**
