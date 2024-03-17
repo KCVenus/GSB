@@ -34,6 +34,7 @@ switch ($action) {
     case 'voirEtatFrais':
         $leMois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
+        $prixKm=$pdo->getFraisKmByVisiteur($idVisiteur);
         $moisASelectionner = $leMois;
         include PATH_VIEWS . 'v_listeMois.php';
         $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
