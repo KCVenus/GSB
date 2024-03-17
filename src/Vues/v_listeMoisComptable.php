@@ -57,18 +57,14 @@
                         $mois = $unMois['mois'];
                         $numAnnee = $unMois['numAnnee'];
                         $numMois = $unMois['numMois'];
-                        if ($mois == $moisASelectionner) {
+                        
                             ?>
-                            <option selected value="<?php echo $mois ?>">
-                                <?php echo $numMois . '/' . $numAnnee ?> </option>
-                            <?php
-                        } else {
-                            ?>
-                            <option value="<?php echo $mois ?>">
+                            <option value="<?php echo $mois ?>" 
+                        <?php if(  isset($_SESSION['idVisiteur']) && $mois==$_SESSION['leMois']){echo 'selected';} ?> >
                                 <?php echo $numMois . '/' . $numAnnee ?> </option>
                             <?php
                         }
-                    }
+                    
                     ?>    
 
                 </select>
