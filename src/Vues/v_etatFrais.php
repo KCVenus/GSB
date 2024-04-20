@@ -42,7 +42,8 @@
         <tr>
             <?php
             foreach ($lesFraisForfait as $unFraisForfait) {
-                $quantite = $unFraisForfait['quantite']; ?>
+                $quantite = $unFraisForfait['idfrais'] == 'KM' ? $unFraisForfait['quantite']*$prixKm['prix'] : $unFraisForfait['quantite'] ;
+                ?>
                 <td class="qteForfait"><?php echo $quantite ?> </td>
                 <?php
             }
@@ -74,3 +75,22 @@
         ?>
     </table>
 </div>
+
+<?php
+if($_SESSION['role']=='Comptable'){
+    
+    if($etat=='VA'){
+        $action='MP';
+        $actionLibelle='Mettre en paiement';
+    }else if($etat=='MP'){
+        $action='RB';
+        $actionLibelle='Rembourser';
+    }
+
+echo '<form method="post" action="index.php?uc=suivreFrais&action=RBouMPFicheFrais" role="form">
+    <button type="submit" name="RBouMPFicheFrais" value=' .$action .' class="btn btn-danger">' . $actionLibelle . ' </button>
+</form>' ;
+
+}
+
+?>

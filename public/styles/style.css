@@ -32,3 +32,8 @@ footer .container p {
 code {
   font-size: 80%;
 }
+
+.table-input{
+    border:1px solid white !important;
+    
+}

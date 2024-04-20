@@ -43,40 +43,29 @@ use Outils\Utilitaires;
                $montantValide=$ficheFrais['montantValide'];
                $dateModif=$ficheFrais['dateModif'];
                $libEtat = $ficheFrais['libEtat'];
+                $idEtat = $ficheFrais['idEtat'];
             ?>   
                 
-            <form method="post" action="index.php?uc=suivreFrais&action=afficherSuiviFicheFrais" role="form">
+           
             <tr>
+                 <form method="post" action="index.php?uc=suivreFrais&action=voirEtatFrais" role="form">
 
                 <?php 
                   
                         echo 
-                            '<td> ' . $nomVisiteur . '</td>'. 
-                            '<td>' . $mois . '</td>' .
+                            '<td> <input readonly name="nom-visiteur" class="table-input" type="text" value="' . $nomVisiteur . '"</input></td>'. 
+                            '<td>  <input readonly name="leMois" class="table-input" type="text" value="' . $mois . '"</input></td>' .
                             '<td>' . $nbJustificatifs . '</td>'.
                               '<td>' . $montantValide . '</td>' .
                                 '<td>' . $dateModif . '</td>'.
-                                '<td>' . $libEtat . '</td>';
+                                '<td> <input hidden name="etat" type="text" value="' . $idEtat . '"</input>' . $libEtat . '</td>';
                     
                 ?>
 
             <td>
                 <?php 
-                echo 'afficher cette fiche';
-//                    if ($_SESSION['role']=="Comptable"){
-//                        echo '<button class="btn btn-success" type="submit" value="corriger" name="action">Corriger</button>' 
-//                        . '<button class="btn btn-warning" type="reset">Réinitialiser</button>  '
-//                        .'</form>'
-//                                
-//                        . '<a href="index.php?uc=validerFrais&action=refuserOuReporter&idFrais='. $id .'" > <button class="btn btn-danger" >Refuser ou reporter </button> </a>';
-//
-//                    }
-//                    else{
-//                        echo '<a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=' . $id 
-//                        .'"  onclick="return confirm(' . "'" . 'Voulez-vous vraiment supprimer ce frais?' . "')" 
-//                        .' ;" >supprimer</a>';
-//                    }
-//                ?> 
+                echo '<a href="index.php?uc=suivreFrais&action=voirEtatFrais"><button class="btn btn-success" type="submit">Afficher</button> </a>  </form>';
+               ?> 
 
             </td>
             

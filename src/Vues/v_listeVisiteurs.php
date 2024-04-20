@@ -17,16 +17,22 @@
  */
 
 ?>
-<h2>Valider fiche de frais</h2>
+<h2>
+    <?php if($uc=='suivreFrais'){
+                echo 'Suivre le paiement'  ;
+            }else if($uc=='validerFrais'){
+                 echo 'Valider fiche de frais'  ;
+            }
+            ?>
+    </h2>
 <div class="row">
 
     <div class="col-md-4">
         <form 
             <?php if($uc=='suivreFrais'){
-                echo ' action="index.php?uc=suivreFrais&action=voirEtatFrais"  '  ;
+                echo ' action="index.php?uc=suivreFrais&action=voirFichesFrais"  '  ;
             }else if($uc=='validerFrais'){
                  echo ' action="index.php?uc=validerFrais&action=selectionnerMois"  '  ;
-                
             }
             ?>
            
