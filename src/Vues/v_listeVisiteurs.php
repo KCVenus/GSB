@@ -21,7 +21,15 @@
 <div class="row">
 
     <div class="col-md-4">
-        <form action="index.php?uc=validerFrais&action=selectionnerMois" 
+        <form 
+            <?php if($uc=='suivreFrais'){
+                echo ' action="index.php?uc=suivreFrais&action=voirEtatFrais"  '  ;
+            }else if($uc=='validerFrais'){
+                 echo ' action="index.php?uc=validerFrais&action=selectionnerMois"  '  ;
+                
+            }
+            ?>
+           
               method="post" role="form">
             <div class="form-group">
                 

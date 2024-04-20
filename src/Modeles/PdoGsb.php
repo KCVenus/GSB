@@ -102,6 +102,20 @@ class PdoGsb
         return $requetePrepare->fetch(PDO::FETCH_ASSOC);
     }
     
+    
+     public function getInfosUtilisateurFromId($id): array|bool
+    {
+        $req= 'SELECT id AS id, nom AS nom, prenom AS prenom, email AS email '
+                . ' FROM utilisateur' 
+                . ' WHERE id = :unId';
+        
+        $requetePrepare = $this->connexion->prepare($req);
+        $requetePrepare->bindParam(':unId', $id, PDO::PARAM_STR);
+        
+        $requetePrepare->execute();
+        return $requetePrepare->fetch(PDO::FETCH_ASSOC);
+    }
+    
     /**
      * 
      * @param int $idFrais
@@ -613,6 +627,39 @@ class PdoGsb
         $laLigne = $requetePrepare->fetch(PDO::FETCH_ASSOC);
         return $laLigne;
     }
+    
+    
+    /**
+     * Retourne les informations d'une fiche de frais d'un visiteur pour un
+     * mois donné
+     *
+     * @param String $idVisiteur ID du visiteur
+     * @param String $mois       Mois sous la forme aaaamm
+     *
+     * @return un tableau avec des champs de jointure entre une fiche de frais
+     *         et la ligne d'état
+     */
+    public function getLesInfosFicheFraisByEtat($idVisiteur, $idEtat): array| bool
+    {
+        $requetePrepare = $this->connexion->prepare(
+            'SELECT fichefrais.idetat as idEtat, '
+                . 'fichefrais.mois as mois,'
+            . 'fichefrais.datemodif as dateModif,'
+            . 'fichefrais.nbjustificatifs as nbJustificatifs, '
+            . 'fichefrais.montantvalide as montantValide, '
+            . 'etat.libelle as libEtat '
+            . 'FROM fichefrais '
+            . 'INNER JOIN etat ON fichefrais.idetat = etat.id '
+            . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
+            . 'AND fichefrais.idEtat = :unIdEtat'
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unIdEtat', $idEtat, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $lesFiches = $requetePrepare->fetchAll(PDO::FETCH_ASSOC);
+        return $lesFiches;
+    }
+    
 
     /**
      * Modifie l'état et la date de modification d'une fiche de frais.
