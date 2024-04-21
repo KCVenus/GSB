@@ -1,7 +1,7 @@
 <?php
 use Outils\Utilitaires;
 /**
- * Vue Liste des frais hors forfait
+ * Vue Suivi des frais
  *
  * PHP Version 8
  *
@@ -22,7 +22,7 @@ use Outils\Utilitaires;
 <hr>
 <div class="row">
     <div class="panel panel-info">
-        <div class="panel-heading">Fiches de frais validées</div>
+        <div class="panel-heading">Fiches de frais validées ou mises en paiement</div>
         <table class="table table-bordered table-responsive">
             <thead>
                 <tr>

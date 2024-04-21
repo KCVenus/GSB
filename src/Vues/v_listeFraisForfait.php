@@ -18,7 +18,7 @@
 
 ?>
 <div class="row">    
-    <h2><?php if($_SESSION["role"] == "Visiteur"){echo 'Renseigner ma fiche de frais du mois'. $numMois . '-' . $numAnnee;}
+    <h2><?php if($_SESSION["role"] == "Visiteur"){echo 'Renseigner ma fiche de frais du mois '. $numMois . '-' . $numAnnee;}
         elseif($_SESSION["role"] == "Comptable")?>
     </h2>
     <h3>Eléments forfaitisés</h3>

@@ -104,7 +104,9 @@ use Outils\Utilitaires;
 
 
 <?php if($_SESSION['role']=='Visiteur'){
-    echo  '<div class="row">
+    ?>
+  
+    <div class="row">
     <h3>Nouvel élément hors forfait</h3>
     <div class="col-md-4">
         <form action="index.php?uc=gererFrais&action=validerCreationFrais" 
@@ -129,6 +131,7 @@ use Outils\Utilitaires;
             <button class="btn btn-danger" type="reset">Effacer</button>
         </form>
     </div>
-</div>' 
+</div>
+    <?php
     ;} ?>
 

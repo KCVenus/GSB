@@ -50,7 +50,7 @@ elseif ($_SESSION["role"] == "Visiteur"){$icon = 'pencil';$icon1 = 'list-alt';}
                         </a>
                         <a 
                             <?php if($_SESSION["role"] == "Visiteur"){echo 'href="index.php?uc=etatFrais&action=selectionnerMois"';}
-                                  elseif($_SESSION["role"] == "Comptable"){echo 'href="index.php?uc=etatFrais&action=suiviPaiement"';} 
+                                  elseif($_SESSION["role"] == "Comptable"){echo 'href="index.php?uc=suivreFrais&action=selectionnerVisiteur"';} 
                                     ?>
                            class="btn btn-primary btn-lg" role="button">
                             <span class="glyphicon glyphicon-<?php echo $icon1 ?>"></span>
