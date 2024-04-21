@@ -33,15 +33,17 @@
                         $mois = $unMois['mois'];
                         $numAnnee = $unMois['numAnnee'];
                         $numMois = $unMois['numMois'];
+                        $numMoisSelect = $numMois;
+                        $numAnneeSelect = $numAnnee;
+                        $mois2 = $mois;
                         if ($mois == $moisASelectionner) {
                             ?>
                             <option selected value="<?php echo $mois ?>">
                                 <?php echo $numMois . '/' . $numAnnee ?> </option>
                             <?php
-                        } else {
-                            ?>
-                            <option value="<?php echo $mois ?>">
-                                <?php echo $numMois . '/' . $numAnnee ?> </option>
+                        } else {?>
+                            <option value="<?php echo $mois2 ?>">
+                                <?php echo $numMoisSelect . '/' . $numAnneeSelect ?> </option>
                             <?php
                         }
                     }

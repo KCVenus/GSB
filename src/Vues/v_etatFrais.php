@@ -94,3 +94,7 @@ echo '<form method="post" action="index.php?uc=suivreFrais&action=RBouMPFicheFra
 }
 
 ?>
+
+<form action="index.php?uc=etatFrais&action=voirpdf" method="post" >
+    <input id="pdf" type="submit" value="Télécharger le PDF" class="btn btn-success" role="button" >
+</form>

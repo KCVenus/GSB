@@ -46,6 +46,10 @@ switch ($action) {
         $montantValide = $lesInfosFicheFrais['montantValide'];
         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
         $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
-       
+        $_SESSION['leMois']=$leMois;
         include PATH_VIEWS . 'v_etatFrais.php';
+        
+    case 'voirpdf':
+        include PATH_OUTILS . 'pdf_create.php';
+       
 }

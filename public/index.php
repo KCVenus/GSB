@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: text/html; charset=utf-8');
+
 /**
  * Index du projet GSB
  *
@@ -11,7 +13,7 @@
  * @author    José GIL <jgil@ac-nice.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
- * @version   GIT: <0>
+ * @version   GIT: <0>                  
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
