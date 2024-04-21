@@ -41,14 +41,14 @@
                             <option selected value="<?php echo $mois ?>">
                                 <?php echo $numMois . '/' . $numAnnee ?> </option>
                             <?php
-                        } else {?>
+                        } else {
+                            ?>
                             <option value="<?php echo $mois2 ?>">
                                 <?php echo $numMoisSelect . '/' . $numAnneeSelect ?> </option>
                             <?php
                         }
                     }
                     ?>    
-
                 </select>
             </div>
             <input id="ok" type="submit" value="Valider" class="btn btn-success" 

@@ -12,22 +12,23 @@ if (!$db) {
 }
 mysqli_set_charset($db, "utf8");
 
-require("fpdf.php"); // Inclusion de la bibliothèque FPDF
+require("tfpdf.php"); // Inclusion de la bibliothèque FPDF
 
 // Définition de la classe PDF héritée de FPDF pour les en-têtes et pieds de page personnalisés
-class PDF extends FPDF {
+class PDF extends tFPDF {
     function Header() {
         $this->Image('./images/logo.jpg', 10, 6, 30); // Assurez-vous que le chemin est correct
         $this->SetFont('Arial', 'B', 15);
         $this->Cell(80); // Déplacer la cellule vers la droite
-        $this->Cell(30, 10, 'Titre du Document', 1, 0, 'C');
+        $this->Cell(30, 10, 'ETAT DE FRAIS ENGAGES', 1, 0, 'C');
         $this->Ln(20);
     }
-
+ 
     function Footer() {
         $this->SetY(-15);
         $this->SetFont('Arial', 'I', 8);
         $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
+        
     }
 }
 
@@ -84,12 +85,13 @@ while ($row2 = mysqli_fetch_array($result2)) {
 }
 
 // Affichage du total général
-$pdf->SetFont('Arial', 'B', 12);
-$pdf->Cell(140, 10, 'Total Général', 1);
-$pdf->Cell(50, 10, number_format($totalGénéral, 2, '.', '') . ' EUR', 1, 1, 'C');
+//$pdf->SetFont('Arial', 'B', 12);
+//$pdf->Cell(140, 10, 'Total Général', 1);
+//$pdf->Cell(50, 10, number_format($totalGénéral, 2, '.', '') . ' EUR', 1, 1, 'C');
 
 // Génération du PDF
 
-$pdf->Output();
 ob_end_flush(); // Envoi du contenu du tampon et désactivation de la mise en tampon
+ob_end_clean();
+$pdf->Output();
 ?>

@@ -48,8 +48,9 @@ switch ($action) {
         $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
         $_SESSION['leMois']=$leMois;
         include PATH_VIEWS . 'v_etatFrais.php';
-        
+        break;
+    
     case 'voirpdf':
-        include PATH_OUTILS . 'pdf_create.php';
-       
+        include PATH_OUTILS . 'pdf_create_etatFrais.php';
+        break;
 }
