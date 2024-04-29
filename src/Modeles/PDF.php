@@ -250,7 +250,10 @@ function ConvertionDate($row) {
         $this->Cell(50, 10, "", 'B', 1);
         $this->SetTextColorBleu();
         $this->DefPolice1(); 
-        $this->Cell(30, 10, 'Mois', 0, 1);
+        $this->Cell(30, 10, 'Mois', 0, 0);
+        $this->Cell(30,10, "",0,0);
+        $this->Cell(50,10, "",'B',1);
+        $this->Cell(175,1,"",0,1);
         $this->SetDefaultFont();
         $this->SetLeftMargin(30);
     }
