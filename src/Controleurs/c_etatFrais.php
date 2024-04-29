@@ -16,10 +16,14 @@
  */
 
 use Outils\Utilitaires;
+use Outils\tfpdf\PDF;
+
 
 $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $idVisiteur = $_SESSION['idUtilisateur'];
 $role = $_SESSION['role'];
+$etat = filter_input(INPUT_GET, 'etat', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
 
 switch ($action) {
     case 'selectionnerMois':
@@ -43,14 +47,36 @@ switch ($action) {
         $numAnnee = substr($leMois, 0, 4);
         $numMois = substr($leMois, 4, 2);
         $libEtat = $lesInfosFicheFrais['libEtat'];
+        $etat = $lesInfosFicheFrais['idEtat'];
         $montantValide = $lesInfosFicheFrais['montantValide'];
         $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
         $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
         $_SESSION['leMois']=$leMois;
         include PATH_VIEWS . 'v_etatFrais.php';
-    break;
-        
+
+        break;
+    
     case 'voirpdf':
-        include PATH_OUTILS . 'pdf_create.php';
-    break;
+        if ($etat =='VA'){
+            ob_start();
+            $pdf = new Modeles\PDF();
+            $pdf->AddPage();
+            $pdf->CreatePDFEtat();
+            ob_end_flush(); // Envoi du contenu du tampon et désactivation de la mise en tampon
+            ob_end_clean();
+            $pdf->Output();
+        }elseif ($etat == 'RB'){
+            ob_start();
+            $pdf = new Modeles\PDF();
+            $pdf->AddPage();
+            $pdf->CreatePDFRembourser();
+            ob_end_flush(); // Envoi du contenu du tampon et désactivation de la mise en tampon
+            ob_end_clean();
+            $pdf->Output();
+        } else {
+            Utilitaires::ajouterErreur('Une erreur est survenue, veuillez recommencer');
+            include PATH_VIEWS . 'v_erreurs.php';
+        }
+        break;
+
 }
