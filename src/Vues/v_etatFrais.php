@@ -95,6 +95,6 @@ echo '<form method="post" action="index.php?uc=suivreFrais&action=RBouMPFicheFra
 
 ?>
 
-<form action="index.php?uc=etatFrais&action=voirpdf" method="post" >
-    <input id="pdf" type="submit" value="Télécharger le PDF" class="btn btn-success" role="button" >
-</form>
+<div>
+    <a class="btn btn-success" target="_blank" href="index.php?uc=etatFrais&action=voirpdf&etat=<?php echo $etat; ?>">Télécharger PDF</a>
+</div>
