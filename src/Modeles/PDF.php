@@ -214,14 +214,16 @@ function ConvertionDate($row) {
 
     function SetNomMois($mois, $annee) {
         $NomFrMois = $this->numeroVersMois($mois);
-        $this->Cell(30, 10, $NomFrMois . " " . $annee, 0);
+        $this->Cell(30, 10, utf8_decode($NomFrMois . " " . $annee), 0);
         $this->Ln(10);
     }
 
 //----------------------------------------- TABLEAUX -----------------------------------------
 
     function CreateTabVisiteurRembourser($row) {
+        $this->SetLeftMargin(20);
         $this->Cell(175, 10, 'REMBOURSEMENT DE FRAIS ENGAGES', 1, 1, 'C');
+        $this->SetLeftMargin(30);
         $this->SetDefaultFont();
         $this->Cell(50, 10, 'Visiteur', 0);
         $this->Cell(30, 10, $row['id']);
@@ -389,7 +391,7 @@ $mois = $dateInfo['mois'];
 $annee = $dateInfo['annee'];
 $this->SetFontArial();
 $this->ConvertionDate($row);
-$this->SetLeftMargin(30);
+$this->SetLeftMargin(20);
 $this->SetTextColorBleu();
 $this->CreateTabVisiteurRembourser($row);
 $this->SetNomMois($mois, $annee);
