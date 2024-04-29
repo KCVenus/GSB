@@ -36,11 +36,6 @@ class PDF extends tFPDF {
         $this->Ln(20);
     }
 
-    function Footer() {
-        $this->SetY(-15);
-        $this->SetFont('Arial', 'I', 8);
-        $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
-    }
 
     function BreakCell($w, $h, $txt, $border = 0, $align = 'J', $fill = false) {
         if (!isset($this->CurrentFont))
@@ -216,8 +211,6 @@ function ConvertionDate($row) {
     $nomMois = $dateObj ? $dateObj->format('F') : 'Invalid Month';
     return ['mois' => $mois, 'annee' => $annee, 'nomMois' => $nomMois];
 }
-
-    
 
     function SetNomMois($mois, $annee) {
         $NomFrMois = $this->numeroVersMois($mois);
@@ -396,7 +389,7 @@ $mois = $dateInfo['mois'];
 $annee = $dateInfo['annee'];
 $this->SetFontArial();
 $this->ConvertionDate($row);
-$this->SetLeftMargin(20);
+$this->SetLeftMargin(30);
 $this->SetTextColorBleu();
 $this->CreateTabVisiteurRembourser($row);
 $this->SetNomMois($mois, $annee);
