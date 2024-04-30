@@ -1,3 +1,21 @@
+<?php
+/**
+ * Vue d'identification à deux facteurs
+ *
+ * PHP Version 8
+ *
+ * @category  PPE
+ * @package   GSB
+ * @author    Réseau CERTA <contact@reseaucerta.org>
+ * @author    Annabelle Hantrais
+ * @author    Arthur Demoisson
+ * @copyright 2024 Réseau CERTA
+ * @license   Réseau CERTA
+ * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
+ * @link      https://getbootstrap.com/docs/3.3/ Documentation Bootstrap v3
+ */
+?>
+
 <div class="alert alert-info" role="alert">Un email contenant un code à 4 chiffres vous a été envoyé, merci de le saisir ici...</div>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">

@@ -66,41 +66,6 @@ Search.appendIndex(
             "summary": "Fonction\u0020qui\u0020met\u0020\u00E0\u0020jour\u0020les\u0020montants\u0020des\u0020fiches\u0020de\u0020frais\u0020\u0028via\u0020des\u0020UPDATE\u0020SQL\u0029",
             "url": "namespaces/default.html#function_majFicheFrais"
         },                {
-            "fqsen": "\\DB_URL",
-            "name": "DB_URL",
-            "summary": "",
-            "url": "namespaces/default.html#constant_DB_URL"
-        },                {
-            "fqsen": "\\DB_USER",
-            "name": "DB_USER",
-            "summary": "",
-            "url": "namespaces/default.html#constant_DB_USER"
-        },                {
-            "fqsen": "\\DB_PWD",
-            "name": "DB_PWD",
-            "summary": "",
-            "url": "namespaces/default.html#constant_DB_PWD"
-        },                {
-            "fqsen": "\\DB_NAME",
-            "name": "DB_NAME",
-            "summary": "",
-            "url": "namespaces/default.html#constant_DB_NAME"
-        },                {
-            "fqsen": "\\DB_DSN",
-            "name": "DB_DSN",
-            "summary": "",
-            "url": "namespaces/default.html#constant_DB_DSN"
-        },                {
-            "fqsen": "\\PATH_VIEWS",
-            "name": "PATH_VIEWS",
-            "summary": "",
-            "url": "namespaces/default.html#constant_PATH_VIEWS"
-        },                {
-            "fqsen": "\\PATH_CTRLS",
-            "name": "PATH_CTRLS",
-            "summary": "",
-            "url": "namespaces/default.html#constant_PATH_CTRLS"
-        },                {
             "fqsen": "\\Outils\\Utilitaires",
             "name": "Utilitaires",
             "summary": "",
@@ -115,6 +80,11 @@ Search.appendIndex(
             "name": "connecter",
             "summary": "Enregistre\u0020dans\u0020une\u0020variable\u0020session\u0020les\u0020infos\u0020d\u0027un\u0020visiteur",
             "url": "classes/Outils-Utilitaires.html#method_connecter"
+        },                {
+            "fqsen": "\\Outils\\Utilitaires\u003A\u003AconnecterA2f\u0028\u0029",
+            "name": "connecterA2f",
+            "summary": "",
+            "url": "classes/Outils-Utilitaires.html#method_connecterA2f"
         },                {
             "fqsen": "\\Outils\\Utilitaires\u003A\u003Adeconnecter\u0028\u0029",
             "name": "deconnecter",
@@ -141,10 +111,20 @@ Search.appendIndex(
             "summary": "Indique\u0020si\u0020une\u0020valeur\u0020est\u0020un\u0020entier\u0020positif\u0020ou\u0020nul",
             "url": "classes/Outils-Utilitaires.html#method_estEntierPositif"
         },                {
+            "fqsen": "\\Outils\\Utilitaires\u003A\u003AestNombrePositif\u0028\u0029",
+            "name": "estNombrePositif",
+            "summary": "",
+            "url": "classes/Outils-Utilitaires.html#method_estNombrePositif"
+        },                {
             "fqsen": "\\Outils\\Utilitaires\u003A\u003AestTableauEntiers\u0028\u0029",
             "name": "estTableauEntiers",
             "summary": "Indique\u0020si\u0020un\u0020tableau\u0020de\u0020valeurs\u0020est\u0020constitu\u00E9\u0020d\u0027entiers\u0020positifs\u0020ou\u0020nuls",
             "url": "classes/Outils-Utilitaires.html#method_estTableauEntiers"
+        },                {
+            "fqsen": "\\Outils\\Utilitaires\u003A\u003AcestTableauNombres\u0028\u0029",
+            "name": "cestTableauNombres",
+            "summary": "",
+            "url": "classes/Outils-Utilitaires.html#method_cestTableauNombres"
         },                {
             "fqsen": "\\Outils\\Utilitaires\u003A\u003AestDateDepassee\u0028\u0029",
             "name": "estDateDepassee",
@@ -156,10 +136,20 @@ Search.appendIndex(
             "summary": "V\u00E9rifie\u0020la\u0020validit\u00E9\u0020du\u0020format\u0020d\u0027une\u0020date\u0020fran\u00E7aise\u0020jj\/mm\/aaaa",
             "url": "classes/Outils-Utilitaires.html#method_estDateValide"
         },                {
+            "fqsen": "\\Outils\\Utilitaires\u003A\u003AgetMoisSuivant\u0028\u0029",
+            "name": "getMoisSuivant",
+            "summary": "",
+            "url": "classes/Outils-Utilitaires.html#method_getMoisSuivant"
+        },                {
             "fqsen": "\\Outils\\Utilitaires\u003A\u003AlesQteFraisValides\u0028\u0029",
             "name": "lesQteFraisValides",
             "summary": "V\u00E9rifie\u0020que\u0020le\u0020tableau\u0020de\u0020frais\u0020ne\u0020contient\u0020que\u0020des\u0020valeurs\u0020num\u00E9riques",
             "url": "classes/Outils-Utilitaires.html#method_lesQteFraisValides"
+        },                {
+            "fqsen": "\\Outils\\Utilitaires\u003A\u003AlesQteFraisValidesNombre\u0028\u0029",
+            "name": "lesQteFraisValidesNombre",
+            "summary": "",
+            "url": "classes/Outils-Utilitaires.html#method_lesQteFraisValidesNombre"
         },                {
             "fqsen": "\\Outils\\Utilitaires\u003A\u003AvalideInfosFrais\u0028\u0029",
             "name": "valideInfosFrais",
@@ -175,6 +165,151 @@ Search.appendIndex(
             "name": "nbErreurs",
             "summary": "Retoune\u0020le\u0020nombre\u0020de\u0020lignes\u0020du\u0020tableau\u0020des\u0020erreurs",
             "url": "classes/Outils-Utilitaires.html#method_nbErreurs"
+        },                {
+            "fqsen": "\\Modeles\\PDF",
+            "name": "PDF",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AHeader\u0028\u0029",
+            "name": "Header",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_Header"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ABreakCell\u0028\u0029",
+            "name": "BreakCell",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_BreakCell"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AformaterDate\u0028\u0029",
+            "name": "formaterDate",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_formaterDate"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AobtenirDateDuJour\u0028\u0029",
+            "name": "obtenirDateDuJour",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_obtenirDateDuJour"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AnumeroVersMois\u0028\u0029",
+            "name": "numeroVersMois",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_numeroVersMois"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AcreatePDF\u0028\u0029",
+            "name": "createPDF",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_createPDF"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ArecupererInfoUser\u0028\u0029",
+            "name": "recupererInfoUser",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_recupererInfoUser"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ASetFontArial\u0028\u0029",
+            "name": "SetFontArial",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_SetFontArial"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ASetDefaultFont\u0028\u0029",
+            "name": "SetDefaultFont",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_SetDefaultFont"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ASetTextColorBleu\u0028\u0029",
+            "name": "SetTextColorBleu",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_SetTextColorBleu"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ADefPolice1\u0028\u0029",
+            "name": "DefPolice1",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_DefPolice1"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ADefPolice2\u0028\u0029",
+            "name": "DefPolice2",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_DefPolice2"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ADefPolice3\u0028\u0029",
+            "name": "DefPolice3",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_DefPolice3"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AConvertionDate\u0028\u0029",
+            "name": "ConvertionDate",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_ConvertionDate"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ASetNomMois\u0028\u0029",
+            "name": "SetNomMois",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_SetNomMois"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ACreateTabVisiteurRembourser\u0028\u0029",
+            "name": "CreateTabVisiteurRembourser",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_CreateTabVisiteurRembourser"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ACreateTabVisiteurEtat\u0028\u0029",
+            "name": "CreateTabVisiteurEtat",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_CreateTabVisiteurEtat"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ACreateTabFraisForfait\u0028\u0029",
+            "name": "CreateTabFraisForfait",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_CreateTabFraisForfait"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ACreateTabFraisHorsForfaits\u0028\u0029",
+            "name": "CreateTabFraisHorsForfaits",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_CreateTabFraisHorsForfaits"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AFillTabFraisForfait\u0028\u0029",
+            "name": "FillTabFraisForfait",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_FillTabFraisForfait"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AFillTabFraisHorsForfait\u0028\u0029",
+            "name": "FillTabFraisHorsForfait",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_FillTabFraisHorsForfait"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AFillTabFraisForfaitEtat\u0028\u0029",
+            "name": "FillTabFraisForfaitEtat",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_FillTabFraisForfaitEtat"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AFillTabFraisHorsForfaisEtat\u0028\u0029",
+            "name": "FillTabFraisHorsForfaisEtat",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_FillTabFraisHorsForfaisEtat"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AAddSignatureComptable\u0028\u0029",
+            "name": "AddSignatureComptable",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_AddSignatureComptable"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AAddSignatureComptableEtat\u0028\u0029",
+            "name": "AddSignatureComptableEtat",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_AddSignatureComptableEtat"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003AAddTextFooter\u0028\u0029",
+            "name": "AddTextFooter",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_AddTextFooter"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ACreatePDFRembourser\u0028\u0029",
+            "name": "CreatePDFRembourser",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_CreatePDFRembourser"
+        },                {
+            "fqsen": "\\Modeles\\PDF\u003A\u003ACreatePDFEtat\u0028\u0029",
+            "name": "CreatePDFEtat",
+            "summary": "",
+            "url": "classes/Modeles-PDF.html#method_CreatePDFEtat"
         },                {
             "fqsen": "\\Modeles\\PdoGsb",
             "name": "PdoGsb",
@@ -196,10 +331,50 @@ Search.appendIndex(
             "summary": "Fonction\u0020statique\u0020qui\u0020cr\u00E9e\u0020l\u0027unique\u0020instance\u0020de\u0020la\u0020classe\nAppel\u0020\u003A\u0020\u0024instancePdoGsb\u0020\u003D\u0020PdoGsb\u003A\u003AgetPdoGsb\u0028\u0029\u003B",
             "url": "classes/Modeles-PdoGsb.html#method_getPdoGsb"
         },                {
-            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetInfosVisiteur\u0028\u0029",
-            "name": "getInfosVisiteur",
-            "summary": "Retourne\u0020les\u0020informations\u0020d\u0027un\u0020visiteur",
-            "url": "classes/Modeles-PdoGsb.html#method_getInfosVisiteur"
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetInfosUtilisateur\u0028\u0029",
+            "name": "getInfosUtilisateur",
+            "summary": "Fonction\u0020qui\u0020retourne\u0020l\u0027id,\u0020le\u0020nom\u0020,\u0020le\u0020pr\u00E9nom\u0020et\u0020l\u0027email\u0020de\u0020l\u0027utilisateur\u0020dont\u0020le\u0020login\u0020et\u0020le\u0020role\u0020sont\u0020pass\u00E9s\u0020en\u0020param\u00E8tres.",
+            "url": "classes/Modeles-PdoGsb.html#method_getInfosUtilisateur"
+        },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetInfosUtilisateurFromId\u0028\u0029",
+            "name": "getInfosUtilisateurFromId",
+            "summary": "Fonction\u0020qui\u0020retourne\u0020l\u0027id,\u0020le\u0020nom\u0020,\u0020le\u0020pr\u00E9nom\u0020et\u0020l\u0027email\u0020de\u0020l\u0027utilisateur\u0020dont\u0020l\u0027id\u0020est\u0020pass\u00E9\u0020en\u0020param\u00E8tre.",
+            "url": "classes/Modeles-PdoGsb.html#method_getInfosUtilisateurFromId"
+        },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003ArefuserFraisHorsForfait\u0028\u0029",
+            "name": "refuserFraisHorsForfait",
+            "summary": "Fonction\u0020qui\u0020ajoute\u0020\u0027REFUSE\u0027\u0020au\u0020libelle\u0020du\u0020frais\u0020hors\u0020forfait\u0020dont\u0020l\u0027id\u0020est\u0020pass\u00E9\u0020en\u0020param\u00E8tre.",
+            "url": "classes/Modeles-PdoGsb.html#method_refuserFraisHorsForfait"
+        },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetFraisKmByVisiteur\u0028\u0029",
+            "name": "getFraisKmByVisiteur",
+            "summary": "Fonction\u0020qui\u0020r\u00E9cup\u00E8re\u0020la\u0020valeur\u0020de\u0020l\u0027indemnit\u00E9\u0020kilom\u00E9trique\u0020associ\u00E9\u0020au\u0020v\u00E9hicule\u0020du\u0020visiteur\u0020dont\u0020l\u0027id\u0020est\u0020pass\u00E9\u0020en\u0020param\u00E8tre.",
+            "url": "classes/Modeles-PdoGsb.html#method_getFraisKmByVisiteur"
+        },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetRoleUtilisateur\u0028\u0029",
+            "name": "getRoleUtilisateur",
+            "summary": "Methode\u0020qui\u0020retourne\u0020le\u0020statut\u0020d\u0027un\u0020utilisateur\u0020dont\u0020le\u0020login\u0020est\u0020pass\u00E9\u0020en\u0020param\u00E8tre\u0020\u003A\u00201\u0020pour\u0020visiteur\u0020et\u00202\u0020pour\u0020comptable.",
+            "url": "classes/Modeles-PdoGsb.html#method_getRoleUtilisateur"
+        },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetMdpUtilisateur\u0028\u0029",
+            "name": "getMdpUtilisateur",
+            "summary": "Fonction\u0020qui\u0020retourne\u0020le\u0020mot\u0020de\u0020passe\u0020d\u0027un\u0020utilisateur\u0020en\u0020fonction\u0020de\u0020son\u0020login\u0020pass\u00E9\u0020en\u0020param\u00E8tre.",
+            "url": "classes/Modeles-PdoGsb.html#method_getMdpUtilisateur"
+        },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AsetCodeA2f\u0028\u0029",
+            "name": "setCodeA2f",
+            "summary": "M\u00E9thode\u0020qui\u0020attribue\u0020un\u0020code\u0020de\u0020double\u0020authentification\u0020\u00E0\u0020l\u0027utilisateur\u0020dont\u0020l\u0027id\u0020est\u0020pass\u00E9\u0020en\u0020param\u00E8tre.",
+            "url": "classes/Modeles-PdoGsb.html#method_setCodeA2f"
+        },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetCodeUtilisateur\u0028\u0029",
+            "name": "getCodeUtilisateur",
+            "summary": "Fonction\u0020qui\u0020retourne\u0020le\u0020code\u0020de\u0020double\u0020authentification\u0020de\u0020l\u0027utilisateur\u0020dont\u0020l\u0027id\u0020est\u0020pass\u00E9\u0020en\u0020param\u00E8tre.",
+            "url": "classes/Modeles-PdoGsb.html#method_getCodeUtilisateur"
+        },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetNomsVisiteurs\u0028\u0029",
+            "name": "getNomsVisiteurs",
+            "summary": "Fonction\u0020qui\u0020retourne\u0020le\u0020nom,\u0020prenom,\u0020id\u0020de\u0020tous\u0020les\u0020visiteurs\u0020m\u00E9dicaux.",
+            "url": "classes/Modeles-PdoGsb.html#method_getNomsVisiteurs"
         },                {
             "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetLesFraisHorsForfait\u0028\u0029",
             "name": "getLesFraisHorsForfait",
@@ -225,6 +400,11 @@ Search.appendIndex(
             "name": "majFraisForfait",
             "summary": "Met\u0020\u00E0\u0020jour\u0020la\u0020table\u0020ligneFraisForfait\nMet\u0020\u00E0\u0020jour\u0020la\u0020table\u0020ligneFraisForfait\u0020pour\u0020un\u0020visiteur\u0020et\nun\u0020mois\u0020donn\u00E9\u0020en\u0020enregistrant\u0020les\u0020nouveaux\u0020montants",
             "url": "classes/Modeles-PdoGsb.html#method_majFraisForfait"
+        },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AmajFraisHorsForfait\u0028\u0029",
+            "name": "majFraisHorsForfait",
+            "summary": "M\u00E9thode\u0020qui\u0020met\u0020\u00E0\u0020jour\u0020le\u0020frais\u0020d\u0027id\u0020\u0024idFrais\u0020avec\u0020les\u0020valeurs\u0020pass\u00E9es\u0020en\u0020param\u00E8tres.",
+            "url": "classes/Modeles-PdoGsb.html#method_majFraisHorsForfait"
         },                {
             "fqsen": "\\Modeles\\PdoGsb\u003A\u003AmajNbJustificatifs\u0028\u0029",
             "name": "majNbJustificatifs",
@@ -261,15 +441,35 @@ Search.appendIndex(
             "summary": "Retourne\u0020les\u0020mois\u0020pour\u0020lesquel\u0020un\u0020visiteur\u0020a\u0020une\u0020fiche\u0020de\u0020frais",
             "url": "classes/Modeles-PdoGsb.html#method_getLesMoisDisponibles"
         },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetLesMoisCloturesDisponibles\u0028\u0029",
+            "name": "getLesMoisCloturesDisponibles",
+            "summary": "Retourne\u0020sous\u0020forme\u0020d\u0027un\u0020tableau\u0020de\u0020tableaux\u0020associatifs\u0020les\u0020mois\u0020pour\u0020lesquels\u0020la\u0020fiche\u0020de\u0020frais\u0020est\u0020cl\u00F4tur\u00E9e,\npour\u0020le\u0020visiteur\u0020dont\u0020l\u0027id\u0020est\u0020pass\u00E9\u0020en\u0020param\u00E8tre.",
+            "url": "classes/Modeles-PdoGsb.html#method_getLesMoisCloturesDisponibles"
+        },                {
             "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetLesInfosFicheFrais\u0028\u0029",
             "name": "getLesInfosFicheFrais",
             "summary": "Retourne\u0020les\u0020informations\u0020d\u0027une\u0020fiche\u0020de\u0020frais\u0020d\u0027un\u0020visiteur\u0020pour\u0020un\nmois\u0020donn\u00E9",
             "url": "classes/Modeles-PdoGsb.html#method_getLesInfosFicheFrais"
         },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AgetLesInfosFicheFraisByEtat\u0028\u0029",
+            "name": "getLesInfosFicheFraisByEtat",
+            "summary": "Retourne\u0020les\u0020informations\u0020d\u0027une\u0020fiche\u0020de\u0020frais\u0020d\u0027un\u0020visiteur\u0020pour\u0020un\nmois\u0020donn\u00E9",
+            "url": "classes/Modeles-PdoGsb.html#method_getLesInfosFicheFraisByEtat"
+        },                {
             "fqsen": "\\Modeles\\PdoGsb\u003A\u003AmajEtatFicheFrais\u0028\u0029",
             "name": "majEtatFicheFrais",
             "summary": "Modifie\u0020l\u0027\u00E9tat\u0020et\u0020la\u0020date\u0020de\u0020modification\u0020d\u0027une\u0020fiche\u0020de\u0020frais.",
             "url": "classes/Modeles-PdoGsb.html#method_majEtatFicheFrais"
+        },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AreporterFraisHF\u0028\u0029",
+            "name": "reporterFraisHF",
+            "summary": "Reporte\u0020un\u0020frais\u0020hors\u0020forfait\u0020au\u0020mois\u0020suivant\u0020et\u0020retourne\u0020la\u0020valeur\u0020du\u0020mois\u0020suivant.",
+            "url": "classes/Modeles-PdoGsb.html#method_reporterFraisHF"
+        },                {
+            "fqsen": "\\Modeles\\PdoGsb\u003A\u003AmajMontantValideFicheFrais\u0028\u0029",
+            "name": "majMontantValideFicheFrais",
+            "summary": "Met\u0020\u00E0\u0020jour\u0020le\u0020montant\u0020valid\u00E9\u0020de\u0020la\u0020fiche\u0020de\u0020frais\u0020correpsondant\u0020\u00E0\u0020l\u0027id\u0020visiteur\u0020et\u0020au\u0020mois\u0020pass\u00E9s\u0020en\u0020param\u00E8tres.",
+            "url": "classes/Modeles-PdoGsb.html#method_majMontantValideFicheFrais"
         },                {
             "fqsen": "\\Modeles\\PdoGsb\u003A\u003A\u0024connexion",
             "name": "connexion",
@@ -280,326 +480,6 @@ Search.appendIndex(
             "name": "instance",
             "summary": "",
             "url": "classes/Modeles-PdoGsb.html#property_instance"
-        },                {
-            "fqsen": "\\ComposerAutoloaderInitb61b79819ae9165507c7f3b1ebfa76b0",
-            "name": "ComposerAutoloaderInitb61b79819ae9165507c7f3b1ebfa76b0",
-            "summary": "",
-            "url": "classes/ComposerAutoloaderInitb61b79819ae9165507c7f3b1ebfa76b0.html"
-        },                {
-            "fqsen": "\\ComposerAutoloaderInitb61b79819ae9165507c7f3b1ebfa76b0\u003A\u003AloadClassLoader\u0028\u0029",
-            "name": "loadClassLoader",
-            "summary": "",
-            "url": "classes/ComposerAutoloaderInitb61b79819ae9165507c7f3b1ebfa76b0.html#method_loadClassLoader"
-        },                {
-            "fqsen": "\\ComposerAutoloaderInitb61b79819ae9165507c7f3b1ebfa76b0\u003A\u003AgetLoader\u0028\u0029",
-            "name": "getLoader",
-            "summary": "",
-            "url": "classes/ComposerAutoloaderInitb61b79819ae9165507c7f3b1ebfa76b0.html#method_getLoader"
-        },                {
-            "fqsen": "\\ComposerAutoloaderInitb61b79819ae9165507c7f3b1ebfa76b0\u003A\u003A\u0024loader",
-            "name": "loader",
-            "summary": "",
-            "url": "classes/ComposerAutoloaderInitb61b79819ae9165507c7f3b1ebfa76b0.html#property_loader"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0",
-            "name": "ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0.html"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0\u003A\u003AgetInitializer\u0028\u0029",
-            "name": "getInitializer",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0.html#method_getInitializer"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0\u003A\u003A\u0024prefixLengthsPsr4",
-            "name": "prefixLengthsPsr4",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0.html#property_prefixLengthsPsr4"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0\u003A\u003A\u0024prefixDirsPsr4",
-            "name": "prefixDirsPsr4",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0.html#property_prefixDirsPsr4"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0\u003A\u003A\u0024classMap",
-            "name": "classMap",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ComposerStaticInitb61b79819ae9165507c7f3b1ebfa76b0.html#property_classMap"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\includeFile\u0028\u0029",
-            "name": "includeFile",
-            "summary": "Scope\u0020isolated\u0020include.",
-            "url": "namespaces/composer-autoload.html#function_includeFile"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader",
-            "name": "ClassLoader",
-            "summary": "ClassLoader\u0020implements\u0020a\u0020PSR\u002D0,\u0020PSR\u002D4\u0020and\u0020classmap\u0020class\u0020loader.",
-            "url": "classes/Composer-Autoload-ClassLoader.html"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method___construct"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AgetPrefixes\u0028\u0029",
-            "name": "getPrefixes",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_getPrefixes"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AgetPrefixesPsr4\u0028\u0029",
-            "name": "getPrefixesPsr4",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_getPrefixesPsr4"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AgetFallbackDirs\u0028\u0029",
-            "name": "getFallbackDirs",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_getFallbackDirs"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AgetFallbackDirsPsr4\u0028\u0029",
-            "name": "getFallbackDirsPsr4",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_getFallbackDirsPsr4"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AgetClassMap\u0028\u0029",
-            "name": "getClassMap",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_getClassMap"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AaddClassMap\u0028\u0029",
-            "name": "addClassMap",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_addClassMap"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003Aadd\u0028\u0029",
-            "name": "add",
-            "summary": "Registers\u0020a\u0020set\u0020of\u0020PSR\u002D0\u0020directories\u0020for\u0020a\u0020given\u0020prefix,\u0020either\nappending\u0020or\u0020prepending\u0020to\u0020the\u0020ones\u0020previously\u0020set\u0020for\u0020this\u0020prefix.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_add"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AaddPsr4\u0028\u0029",
-            "name": "addPsr4",
-            "summary": "Registers\u0020a\u0020set\u0020of\u0020PSR\u002D4\u0020directories\u0020for\u0020a\u0020given\u0020namespace,\u0020either\nappending\u0020or\u0020prepending\u0020to\u0020the\u0020ones\u0020previously\u0020set\u0020for\u0020this\u0020namespace.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_addPsr4"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003Aset\u0028\u0029",
-            "name": "set",
-            "summary": "Registers\u0020a\u0020set\u0020of\u0020PSR\u002D0\u0020directories\u0020for\u0020a\u0020given\u0020prefix,\nreplacing\u0020any\u0020others\u0020previously\u0020set\u0020for\u0020this\u0020prefix.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_set"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AsetPsr4\u0028\u0029",
-            "name": "setPsr4",
-            "summary": "Registers\u0020a\u0020set\u0020of\u0020PSR\u002D4\u0020directories\u0020for\u0020a\u0020given\u0020namespace,\nreplacing\u0020any\u0020others\u0020previously\u0020set\u0020for\u0020this\u0020namespace.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_setPsr4"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AsetUseIncludePath\u0028\u0029",
-            "name": "setUseIncludePath",
-            "summary": "Turns\u0020on\u0020searching\u0020the\u0020include\u0020path\u0020for\u0020class\u0020files.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_setUseIncludePath"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AgetUseIncludePath\u0028\u0029",
-            "name": "getUseIncludePath",
-            "summary": "Can\u0020be\u0020used\u0020to\u0020check\u0020if\u0020the\u0020autoloader\u0020uses\u0020the\u0020include\u0020path\u0020to\u0020check\nfor\u0020classes.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_getUseIncludePath"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AsetClassMapAuthoritative\u0028\u0029",
-            "name": "setClassMapAuthoritative",
-            "summary": "Turns\u0020off\u0020searching\u0020the\u0020prefix\u0020and\u0020fallback\u0020directories\u0020for\u0020classes\nthat\u0020have\u0020not\u0020been\u0020registered\u0020with\u0020the\u0020class\u0020map.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_setClassMapAuthoritative"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AisClassMapAuthoritative\u0028\u0029",
-            "name": "isClassMapAuthoritative",
-            "summary": "Should\u0020class\u0020lookup\u0020fail\u0020if\u0020not\u0020found\u0020in\u0020the\u0020current\u0020class\u0020map\u003F",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_isClassMapAuthoritative"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AsetApcuPrefix\u0028\u0029",
-            "name": "setApcuPrefix",
-            "summary": "APCu\u0020prefix\u0020to\u0020use\u0020to\u0020cache\u0020found\/not\u002Dfound\u0020classes,\u0020if\u0020the\u0020extension\u0020is\u0020enabled.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_setApcuPrefix"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AgetApcuPrefix\u0028\u0029",
-            "name": "getApcuPrefix",
-            "summary": "The\u0020APCu\u0020prefix\u0020in\u0020use,\u0020or\u0020null\u0020if\u0020APCu\u0020caching\u0020is\u0020not\u0020enabled.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_getApcuPrefix"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003Aregister\u0028\u0029",
-            "name": "register",
-            "summary": "Registers\u0020this\u0020instance\u0020as\u0020an\u0020autoloader.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_register"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003Aunregister\u0028\u0029",
-            "name": "unregister",
-            "summary": "Unregisters\u0020this\u0020instance\u0020as\u0020an\u0020autoloader.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_unregister"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AloadClass\u0028\u0029",
-            "name": "loadClass",
-            "summary": "Loads\u0020the\u0020given\u0020class\u0020or\u0020interface.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_loadClass"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AfindFile\u0028\u0029",
-            "name": "findFile",
-            "summary": "Finds\u0020the\u0020path\u0020to\u0020the\u0020file\u0020where\u0020the\u0020class\u0020is\u0020defined.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_findFile"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AgetRegisteredLoaders\u0028\u0029",
-            "name": "getRegisteredLoaders",
-            "summary": "Returns\u0020the\u0020currently\u0020registered\u0020loaders\u0020indexed\u0020by\u0020their\u0020corresponding\u0020vendor\u0020directories.",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_getRegisteredLoaders"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003AfindFileWithExtension\u0028\u0029",
-            "name": "findFileWithExtension",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#method_findFileWithExtension"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024vendorDir",
-            "name": "vendorDir",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_vendorDir"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024prefixLengthsPsr4",
-            "name": "prefixLengthsPsr4",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_prefixLengthsPsr4"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024prefixDirsPsr4",
-            "name": "prefixDirsPsr4",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_prefixDirsPsr4"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024fallbackDirsPsr4",
-            "name": "fallbackDirsPsr4",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_fallbackDirsPsr4"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024prefixesPsr0",
-            "name": "prefixesPsr0",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_prefixesPsr0"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024fallbackDirsPsr0",
-            "name": "fallbackDirsPsr0",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_fallbackDirsPsr0"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024useIncludePath",
-            "name": "useIncludePath",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_useIncludePath"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024classMap",
-            "name": "classMap",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_classMap"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024classMapAuthoritative",
-            "name": "classMapAuthoritative",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_classMapAuthoritative"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024missingClasses",
-            "name": "missingClasses",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_missingClasses"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024apcuPrefix",
-            "name": "apcuPrefix",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_apcuPrefix"
-        },                {
-            "fqsen": "\\Composer\\Autoload\\ClassLoader\u003A\u003A\u0024registeredLoaders",
-            "name": "registeredLoaders",
-            "summary": "",
-            "url": "classes/Composer-Autoload-ClassLoader.html#property_registeredLoaders"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions",
-            "name": "InstalledVersions",
-            "summary": "This\u0020class\u0020is\u0020copied\u0020in\u0020every\u0020Composer\u0020installed\u0020project\u0020and\u0020available\u0020to\u0020all",
-            "url": "classes/Composer-InstalledVersions.html"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AgetInstalledPackages\u0028\u0029",
-            "name": "getInstalledPackages",
-            "summary": "Returns\u0020a\u0020list\u0020of\u0020all\u0020package\u0020names\u0020which\u0020are\u0020present,\u0020either\u0020by\u0020being\u0020installed,\u0020replaced\u0020or\u0020provided",
-            "url": "classes/Composer-InstalledVersions.html#method_getInstalledPackages"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AgetInstalledPackagesByType\u0028\u0029",
-            "name": "getInstalledPackagesByType",
-            "summary": "Returns\u0020a\u0020list\u0020of\u0020all\u0020package\u0020names\u0020with\u0020a\u0020specific\u0020type\u0020e.g.\u0020\u0027library\u0027",
-            "url": "classes/Composer-InstalledVersions.html#method_getInstalledPackagesByType"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AisInstalled\u0028\u0029",
-            "name": "isInstalled",
-            "summary": "Checks\u0020whether\u0020the\u0020given\u0020package\u0020is\u0020installed",
-            "url": "classes/Composer-InstalledVersions.html#method_isInstalled"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003Asatisfies\u0028\u0029",
-            "name": "satisfies",
-            "summary": "Checks\u0020whether\u0020the\u0020given\u0020package\u0020satisfies\u0020a\u0020version\u0020constraint",
-            "url": "classes/Composer-InstalledVersions.html#method_satisfies"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AgetVersionRanges\u0028\u0029",
-            "name": "getVersionRanges",
-            "summary": "Returns\u0020a\u0020version\u0020constraint\u0020representing\u0020all\u0020the\u0020range\u0028s\u0029\u0020which\u0020are\u0020installed\u0020for\u0020a\u0020given\u0020package",
-            "url": "classes/Composer-InstalledVersions.html#method_getVersionRanges"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AgetVersion\u0028\u0029",
-            "name": "getVersion",
-            "summary": "",
-            "url": "classes/Composer-InstalledVersions.html#method_getVersion"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AgetPrettyVersion\u0028\u0029",
-            "name": "getPrettyVersion",
-            "summary": "",
-            "url": "classes/Composer-InstalledVersions.html#method_getPrettyVersion"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AgetReference\u0028\u0029",
-            "name": "getReference",
-            "summary": "",
-            "url": "classes/Composer-InstalledVersions.html#method_getReference"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AgetInstallPath\u0028\u0029",
-            "name": "getInstallPath",
-            "summary": "",
-            "url": "classes/Composer-InstalledVersions.html#method_getInstallPath"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AgetRootPackage\u0028\u0029",
-            "name": "getRootPackage",
-            "summary": "",
-            "url": "classes/Composer-InstalledVersions.html#method_getRootPackage"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AgetRawData\u0028\u0029",
-            "name": "getRawData",
-            "summary": "Returns\u0020the\u0020raw\u0020installed.php\u0020data\u0020for\u0020custom\u0020implementations",
-            "url": "classes/Composer-InstalledVersions.html#method_getRawData"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AgetAllRawData\u0028\u0029",
-            "name": "getAllRawData",
-            "summary": "Returns\u0020the\u0020raw\u0020data\u0020of\u0020all\u0020installed.php\u0020which\u0020are\u0020currently\u0020loaded\u0020for\u0020custom\u0020implementations",
-            "url": "classes/Composer-InstalledVersions.html#method_getAllRawData"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003Areload\u0028\u0029",
-            "name": "reload",
-            "summary": "Lets\u0020you\u0020reload\u0020the\u0020static\u0020array\u0020from\u0020another\u0020file",
-            "url": "classes/Composer-InstalledVersions.html#method_reload"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003AgetInstalled\u0028\u0029",
-            "name": "getInstalled",
-            "summary": "",
-            "url": "classes/Composer-InstalledVersions.html#method_getInstalled"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003A\u0024installed",
-            "name": "installed",
-            "summary": "",
-            "url": "classes/Composer-InstalledVersions.html#property_installed"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003A\u0024canGetVendors",
-            "name": "canGetVendors",
-            "summary": "",
-            "url": "classes/Composer-InstalledVersions.html#property_canGetVendors"
-        },                {
-            "fqsen": "\\Composer\\InstalledVersions\u003A\u003A\u0024installedByVendor",
-            "name": "installedByVendor",
-            "summary": "",
-            "url": "classes/Composer-InstalledVersions.html#property_installedByVendor"
         },                {
             "fqsen": "\\",
             "name": "\\",
@@ -615,15 +495,5 @@ Search.appendIndex(
             "name": "Modeles",
             "summary": "",
             "url": "namespaces/modeles.html"
-        },                {
-            "fqsen": "\\Composer\\Autoload",
-            "name": "Autoload",
-            "summary": "",
-            "url": "namespaces/composer-autoload.html"
-        },                {
-            "fqsen": "\\Composer",
-            "name": "Composer",
-            "summary": "",
-            "url": "namespaces/composer.html"
         }            ]
 );

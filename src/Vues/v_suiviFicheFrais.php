@@ -1,5 +1,5 @@
 <?php
-use Outils\Utilitaires;
+
 /**
  * Vue Suivi des frais
  *
@@ -8,13 +8,16 @@ use Outils\Utilitaires;
  * @category  PPE
  * @package   GSB
  * @author    Réseau CERTA <contact@reseaucerta.org>
- * @author    José GIL <jgil@ac-nice.fr>
- * @copyright 2017 Réseau CERTA
+ * @author    Annabelle Hantrais
+ * @author    Arthur Demoisson
+ * @copyright 2024 Réseau CERTA
  * @license   Réseau CERTA
- * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  * @link      https://getbootstrap.com/docs/3.3/ Documentation Bootstrap v3
  */
+
+use Outils\Utilitaires;
+
 
 ?>
 

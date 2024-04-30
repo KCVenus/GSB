@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Génération de PDFs
+ * 
+ * PHP Version 8
+ *
+ * @category  PPE
+ * @package   GSB
+ * @author    Arthur Demoisson
+ */
+
 namespace Modeles;
 
 use tFPDF;
@@ -345,8 +355,7 @@ function ConvertionDate($row) {
 }
 
 
-    
-    
+
         //----------------------------------------- SIGNATURES -----------------------------------------
 
     function AddSignatureComptable() {

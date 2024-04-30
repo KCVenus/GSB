@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Hachage des mots de passe
+ *
+ * PHP Version 8
+ *
+ * @category  PPE
+ * @package   GSB
+ * @author    Arthur Demoisson
+ * @author    Annabelle Hantrais
+ * 
+ */
+
 $pdo = new PDO('mysql:host=localhost;dbname=gsb_frais', 'userGsb', 'secret');
 $pdo->query('SET CHARACTER SET utf8');
 

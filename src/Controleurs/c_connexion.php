@@ -11,7 +11,6 @@
  * @author    José GIL <jgil@ac-nice.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
- * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
@@ -31,6 +30,7 @@ switch ($action) {
         $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $role = $pdo->getRoleUtilisateur($login);
         $utilisateur = $pdo->getInfosUtilisateur($login,$role);
+       
         if(!($login && $mdp)){
             Utilitaires::ajouterErreur('Veuillez saisir un login et un mot de passe');
             include PATH_VIEWS . 'v_erreurs.php';

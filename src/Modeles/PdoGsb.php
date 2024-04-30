@@ -11,7 +11,6 @@
  * @author    José GIL - CNED <jgil@ac-nice.fr>
  * @copyright 2017 Réseau CERTA
  * @license   Réseau CERTA
- * @version   GIT: <0>
  * @link      http://www.php.net/manual/fr/book.pdo.php PHP Data Objects sur php.net
  */
 
@@ -83,12 +82,12 @@ class PdoGsb
     }
     
     /**
-     * 
-     * @param type $login
-     * @param type $role
+     * Fonction qui retourne l'id, le nom , le prénom et l'email de l'utilisateur dont le login et le role sont passés en paramètres.
+     * @param string $login
+     * @param int $role
      * @return array|bool
      */
-     public function getInfosUtilisateur($login, $role): array|bool
+     public function getInfosUtilisateur(string $login, int $role): array|bool
     {
         $req= 'SELECT id AS id, nom AS nom, prenom AS prenom, email AS email '
                 . ' FROM utilisateur' 
@@ -102,8 +101,12 @@ class PdoGsb
         return $requetePrepare->fetch(PDO::FETCH_ASSOC);
     }
     
-    
-     public function getInfosUtilisateurFromId($id): array|bool
+    /**
+     * Fonction qui retourne l'id, le nom , le prénom et l'email de l'utilisateur dont l'id est passé en paramètre.
+     * @param string $id
+     * @return array|bool
+     */
+     public function getInfosUtilisateurFromId(string $id): array|bool
     {
         $req= 'SELECT id AS id, nom AS nom, prenom AS prenom, email AS email '
                 . ' FROM utilisateur' 
@@ -117,10 +120,11 @@ class PdoGsb
     }
     
     /**
-     * 
+     * Fonction qui ajoute 'REFUSE' au libelle du frais hors forfait dont l'id est passé en paramètre.
      * @param int $idFrais
+     * @return void
      */
-    public function refuserFraisHorsForfait(int $idFrais) {
+    public function refuserFraisHorsForfait(int $idFrais):void {
         $requetePrepare = $this->connexion->prepare(
           'UPDATE lignefraishorsforfait '
           . 'SET lignefraishorsforfait.libelle= LEFT(CONCAT("REFUSE"," ",libelle),100) '
@@ -131,10 +135,10 @@ class PdoGsb
     }
       
     /**
-     * 
-     * @param type $idVisiteur
+     * Fonction qui récupère la valeur de l'indemnité kilométrique associé au véhicule du visiteur dont l'id est passé en paramètre.
+     * @param string $idVisiteur
      */
-    public function getFraisKmByVisiteur($idVisiteur){
+    public function getFraisKmByVisiteur(string $idVisiteur):array|bool{
          $requetePrepare = $this->connexion->prepare(
                  'SELECT prix from fraisKm '
                  . 'inner join utilisateur on fraisKm.id=utilisateur.idVehicule '
@@ -148,12 +152,11 @@ class PdoGsb
     
     }
     /**
-     * Methode qui retourne le statut d'un utilisateur: 1 pour visiteur et 2 pour comptable.
-     * @param type $login
-     * @param type $mdp
-     * @return type
+     * Methode qui retourne le statut d'un utilisateur dont le login est passé en paramètre : 1 pour visiteur et 2 pour comptable.
+     * @param string $login
+     * @return int|bool
      */
-     public function getRoleUtilisateur($login){
+     public function getRoleUtilisateur(string $login):int|bool{
          $requetePrepare = $this->connexion->prepare(
             'SELECT u.role '
             . 'FROM utilisateur u '
@@ -166,10 +169,10 @@ class PdoGsb
     
     /**
      * Fonction qui retourne le mot de passe d'un utilisateur en fonction de son login passé en paramètre.
-     * @param type $login
-     * @return type
+     * @param string $login
+     * @return string|bool
      */
-     public function getMdpUtilisateur($login) {
+     public function getMdpUtilisateur(string $login):string|bool {
     $requetePrepare = $this->connexion->prepare(
         'SELECT mdp '
         . 'FROM utilisateur '
@@ -179,25 +182,12 @@ class PdoGsb
     $requetePrepare->execute();
     return $requetePrepare->fetch(PDO::FETCH_OBJ)->mdp;
 }
-    
+   
     /**
-     * Retourne true si le couple login,mdp correspond à un visiteur, false sinon.
-     * @param type $login
-     * @param type $mdp
-     * @return type
+     * Méthode qui attribue un code de double authentification à l'utilisateur dont l'id est passé en paramètre.
+     * @param type $id
+     * @param type $code
      */
-      public function verifierSiVisiteur($login, $mdp){
-         $requetePrepare = $this->connexion->prepare(
-                 'SELECT v.login FROM visiteur v WHERE v.login = :unLogin AND v.mdp = :unMdp '
-        );
-        $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
-        $requetePrepare->execute();
-
-        return $requetePrepare->fetch() ? true : false ;
-    
-    }
-
     public function setCodeA2f($id, $code) {
     $requetePrepare = $this->connexion->prepare(
         'UPDATE utilisateur '
@@ -209,6 +199,11 @@ class PdoGsb
     $requetePrepare->execute();
     }
 
+    /**
+     * Fonction qui retourne le code de double authentification de l'utilisateur dont l'id est passé en paramètre.
+     * @param type $id
+     * @return type
+     */
     public function getCodeUtilisateur($id) {
         $requetePrepare = $this->connexion->prepare(
             'SELECT utilisateur.codea2f AS codea2f '
@@ -365,7 +360,16 @@ class PdoGsb
     }
     
     
-    
+        /**
+         * Méthode qui met à jour le frais d'id $idFrais avec les valeurs passées en paramètres.
+         * @param type $idVisiteur
+         * @param type $mois
+         * @param type $libelle
+         * @param type $date
+         * @param type $montant
+         * @param type $idFrais
+         * @return void
+         */
         public function majFraisHorsForfait($idVisiteur, $mois, $libelle, $date, $montant, $idFrais): void
     {
 //        $dateFr = Utilitaires::dateFrancaisVersAnglais($date);
@@ -575,6 +579,12 @@ class PdoGsb
         return $lesMois;
     }
     
+    /**
+     *  Retourne sous forme d'un tableau de tableaux associatifs les mois pour lesquels la fiche de frais est clôturée,
+     * pour le visiteur dont l'id est passé en paramètre.
+     * @param type $idVisiteur
+     * @return array
+     */
     public function getLesMoisCloturesDisponibles($idVisiteur): array
     {
         $requetePrepare = $this->connexion->prepare(
@@ -687,7 +697,12 @@ class PdoGsb
     
 
     
-    
+    /**
+     * Reporte un frais hors forfait au mois suivant et retourne la valeur du mois suivant.
+     * @param string $idFrais
+     * @param string $moisPara
+     * @return type
+     */
      public function reporterFraisHF(string $idFrais, string $moisPara) {
         $mois = Utilitaires::getMoisSuivant($moisPara);
         $requetePrepare = $this->connexion->prepare(
@@ -702,7 +717,7 @@ class PdoGsb
 
      }
     /**
-     * 
+     * Met à jour le montant validé de la fiche de frais correpsondant à l'id visiteur et au mois passés en paramètres.
      * @param type $idVisiteur
      * @param type $mois
      * @param type $montantValide

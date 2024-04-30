@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+        configVersion="3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://www.phpdoc.org"
+>
+    <title>GSB</title>
+    <paths>
+        <output>docs/.build</output>
+        
+    </paths>
+ 
+     <version number="latest">
+        <api format="php">
+            <source dsn=".">
+                <path>src</path>
+                <path>resources/Outils</path>
+            </source>
+            <ignore hidden="true" >
+                <path>resources/Outils/tfpdf</path>
+                <path>resources/bdd</path>
+                <path>resources/documents</path>
+                <path>resources/images</path>
+                <path>config</path>
+                <path>public/index.php</path>
+                <path>docs/packages</path>
+                <path>vendor</path>
+            </ignore>
+        </api>
+    </version>
+
+</phpdocumentor>
