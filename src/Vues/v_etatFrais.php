@@ -92,8 +92,10 @@ echo '<form method="post" action="index.php?uc=suivreFrais&action=RBouMPFicheFra
 
 }
 
+if($_SESSION['role']=='Visiteur'){
+    echo '<div><a class="btn btn-success" target="_blank" href="index.php?uc=etatFrais&action=voirpdf&etat=' . $etat . '">Télécharger PDF</a></div>';
+}
+
 ?>
 
-<div>
-    <a class="btn btn-success" target="_blank" href="index.php?uc=etatFrais&action=voirpdf&etat=<?php echo $etat; ?>">Télécharger PDF</a>
-</div>
+

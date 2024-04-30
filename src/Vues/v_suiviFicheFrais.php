@@ -41,7 +41,8 @@ use Outils\Utilitaires;
             <tbody>
             <?php
             foreach ($fichesFrais as $ficheFrais) {
-               $mois=$ficheFrais['mois'];
+               
+               $mois = substr($ficheFrais['mois'],4,2) ."/" .substr($ficheFrais['mois'],0,4) ;
                $nbJustificatifs=$ficheFrais['nbJustificatifs'];
                $montantValide=$ficheFrais['montantValide'];
                $dateModif=$ficheFrais['dateModif'];

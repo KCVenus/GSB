@@ -34,6 +34,7 @@ switch ($action) {
         $prixKm = $pdo->getFraisKmByVisiteur($idVisiteur);
 
         $leMois = filter_input(INPUT_POST, 'leMois', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $leMois= explode('/', $leMois)[1].explode('/', $leMois)[0];
         $_SESSION['leMois'] = $leMois;
         $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur, $leMois);
 
@@ -64,9 +65,7 @@ switch ($action) {
         include PATH_VIEWS . 'v_listeVisiteurs.php';
 
         $nomVisiteur = $visiteur['prenom'] . ' ' . $visiteur['nom'];
-        $fichesFrais = array_merge($pdo->getLesInfosFicheFraisByEtat($idVisiteur, 'VA'),
-        $pdo->getLesInfosFicheFraisByEtat($idVisiteur, 'MP'));
-
+        $fichesFrais = array_merge($pdo->getLesInfosFicheFraisByEtat($idVisiteur, 'VA'), $pdo->getLesInfosFicheFraisByEtat($idVisiteur, 'MP'));
         if (empty($fichesFrais)) {
             Utilitaires::ajouterErreur("Aucune fiche de frais n'est à valider pour ce visiteur. Veuillez-en choisir un autre");
             include PATH_VIEWS . 'v_erreurs.php';
