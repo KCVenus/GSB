@@ -71,16 +71,6 @@ switch ($action) {
             include PATH_VIEWS . 'v_erreurs.php';
         } else {
 
-
-//            $numAnnee = substr($leMois, 0, 4);
-//            $numMois = substr($leMois, 4, 2);
-//            $libEtat = $lesInfosFicheFrais['libEtat'];
-//            $montantValide = $lesInfosFicheFrais['montantValide'];
-//            $nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
-//            $dateModif = Utilitaires::dateAnglaisVersFrancais($lesInfosFicheFrais['dateModif']);
-//            $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
-//            $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
-//            require PATH_VIEWS . 'v_listeFraisForfait.php';
             require PATH_VIEWS . 'v_suiviFicheFrais.php';
         }
         break;
@@ -100,7 +90,7 @@ switch ($action) {
         $pdo->majEtatFicheFrais($idVisiteur, $leMois, $idEtat);
 
         echo '<div class="alert alert-warning" role="alert">
-      <p> La fiche de frais à été' . $etat . ' . <a href = "index.php?uc=suivreFrais&action=selectionnerVisiteur">Cliquez ici</a>
+      <p> La fiche de frais à été ' . $etat . ' . <a href = "index.php?uc=suivreFrais&action=selectionnerVisiteur">Cliquez ici</a>
         pour revenir à la selection.</p>
     </div> ';
 
